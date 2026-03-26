@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sean — Hyrox Sydney 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e10;--surface:#13161a;--card:#1a1e24;--border:#252b33;--bl:#2e3540;--lime:#c8f135;--orange:#f97316;--blue:#60a5fa;--red:#f43f5e;--purple:#a78bfa;--text:#c9d1dc;--dim:#6b7585;--white:#f0f4f8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;line-height:1.65;}
+.header{position:sticky;top:0;z-index:100;background:rgba(12,14,16,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;height:50px;}
+.hbrand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;letter-spacing:1px;color:var(--lime);margin-right:20px;white-space:nowrap;}
+.hnav{display:flex;gap:1px;flex:1;overflow-x:auto;}
+.nb{background:none;border:none;color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:5px 10px;border-radius:4px;cursor:pointer;white-space:nowrap;transition:all 0.15s;}
+.nb:hover{color:var(--white);background:rgba(255,255,255,0.04);}
+.nb.active{color:var(--lime);background:rgba(200,241,53,0.08);}
+.hero{padding:44px 36px 36px;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,241,53,0.04) 0%,transparent 70%);border-bottom:1px solid var(--border);}
+.hero-eye{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.hero-eye::before{content:'▶';font-size:7px;}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:68px;line-height:0.9;color:var(--white);letter-spacing:-1px;margin-bottom:4px;}
+.hero h1 em{color:var(--lime);font-style:normal;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:22px;}
+.hmi{display:flex;flex-direction:column;gap:2px;}
+.hml{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--dim);}
+.hmv{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;color:var(--white);}
+.hmv.accent{color:var(--lime);}
+.hmv.dynamic{color:var(--blue);}
+.hmv small{font-size:11px;color:var(--dim);font-family:'Barlow',sans-serif;font-weight:400;margin-left:4px;}
+.panels{max-width:1140px;margin:0 auto;padding:32px 24px 80px;}
+.panel{display:none;}.panel.active{display:block;}
+.sec{margin-bottom:32px;}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.sn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--lime);letter-spacing:0.1em;background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);padding:2px 8px;border-radius:3px;}
+.st{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:21px;color:var(--white);letter-spacing:0.5px;text-transform:uppercase;}
+.sl{flex:1;height:1px;background:var(--border);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;}
+.card-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--dim);margin-bottom:5px;}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--white);margin-bottom:8px;}
+.card p,.card li{font-size:13px;color:var(--text);line-height:1.7;}
+.card ul{padding-left:16px;}.card li{margin-bottom:4px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:15px 17px;}
+.stat-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;}
+.stat-val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;line-height:1;color:var(--lime);}
+.stat-val.blue{color:var(--blue);}
+.stat-sub{font-size:11px;color:var(--dim);margin-top:4px;}
+.stat-delta{font-size:12px;margin-top:2px;font-family:'JetBrains Mono',monospace;}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);text-align:left;padding:7px 10px;border-bottom:1px solid var(--border);}
+.tbl td{padding:9px 10px;border-bottom:1px solid rgba(37,43,51,0.5);vertical-align:top;color:var(--text);}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:rgba(200,241,53,0.02);}
+.tw{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-right:3px;}
+.tl{background:rgba(200,241,53,0.1);color:var(--lime);border:1px solid rgba(200,241,53,0.25);}
+.to{background:rgba(249,115,22,0.1);color:var(--orange);border:1px solid rgba(249,115,22,0.25);}
+.tb{background:rgba(96,165,250,0.1);color:var(--blue);border:1px solid rgba(96,165,250,0.25);}
+.tr{background:rgba(244,63,94,0.1);color:var(--red);border:1px solid rgba(244,63,94,0.25);}
+.tp{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.25);}
+.tg{background:rgba(255,255,255,0.05);color:var(--dim);border:1px solid var(--border);}
+.co{border-left:3px solid var(--lime);padding:12px 15px;background:rgba(200,241,53,0.04);border-radius:0 8px 8px 0;font-size:13px;color:var(--text);margin-bottom:13px;}
+.co.warn{border-left-color:var(--orange);background:rgba(249,115,22,0.04);}
+.co.crit{border-left-color:var(--red);background:rgba(244,63,94,0.04);}
+.co strong{color:var(--white);}
+.phase{display:flex;gap:13px;}
+.pspine{display:flex;flex-direction:column;align-items:center;width:17px;flex-shrink:0;padding-top:6px;}
+.pdot{width:9px;height:9px;border-radius:50%;background:var(--lime);border:2px solid var(--bg);flex-shrink:0;}
+.pdot.o{background:var(--orange);}.pdot.r{background:var(--red);}
+.pconn{width:2px;flex:1;background:var(--border);margin-top:3px;}
+.pbody{flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 17px;margin-bottom:9px;}
+.pwk{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--lime);margin-bottom:3px;}
+.pwk.o{color:var(--orange);}
+.pname{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--white);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:7px;}
+.pbody p,.pbody li{font-size:13px;color:var(--text);line-height:1.7;}
+.pbody ul{padding-left:16px;margin-top:5px;}
+.pbody li{margin-bottom:4px;}
+
+/* ── WEEK GRID ── */
+.wk-section{margin-bottom:20px;}
+.wk-section-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--lime);margin-bottom:6px;padding:4px 8px;background:rgba(200,241,53,0.06);border-radius:4px;display:inline-block;}
+.wk-section-label.deload{color:var(--orange);background:rgba(249,115,22,0.06);}
+.wk-section-label.phase2{color:var(--blue);background:rgba(96,165,250,0.06);}
+.wk-section-label.race{color:var(--red);background:rgba(244,63,94,0.06);}
+.wk-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.wk-hdr-row{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:2px;}
+.wk-hdr{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);text-align:center;padding:2px 0;}
+.day{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:7px 8px;min-height:64px;font-size:10px;color:var(--dim);line-height:1.4;}
+.day .dn{font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:0.1em;text-transform:uppercase;color:var(--bl);margin-bottom:3px;}
+.day .dd{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--dim);opacity:0.6;}
+.day.cf{border-top:2px solid var(--lime);color:var(--text);}
+.day.run{border-top:2px solid var(--blue);color:var(--text);}
+.day.dl{border-top:2px solid var(--orange);color:var(--text);opacity:0.8;}
+.day.rest{opacity:0.35;}
+.day.race-day{border:1px solid var(--red);background:rgba(244,63,94,0.07);color:var(--white);border-top:2px solid var(--red);}
+
+/* ── MACROS ── */
+.mr{margin-bottom:11px;}
+.mt2{display:flex;justify-content:space-between;margin-bottom:4px;}
+.mn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);}
+.ma{font-family:'Barlow Condensed',monospace;font-size:13px;color:var(--white);font-weight:600;}
+.mb{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+.mf{height:100%;border-radius:3px;}
+
+/* ── CALC ── */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.cblock{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:17px;}
+.cblock h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--white);text-transform:uppercase;letter-spacing:0.3px;margin-bottom:10px;}
+.ir{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.ir label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);width:120px;flex-shrink:0;}
+.ir input{background:var(--surface);border:1px solid var(--border);border-radius:5px;color:var(--white);font-family:'JetBrains Mono',monospace;font-size:13px;padding:6px 10px;width:85px;outline:none;transition:border-color 0.15s;}
+.ir input:focus{border-color:var(--lime);}
+.ir .un{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);}
+.cbtn{background:var(--lime);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:6px;padding:9px 20px;cursor:pointer;transition:opacity 0.15s;margin-top:3px;}
+.cbtn:hover{opacity:0.85;}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px;}
+.rb{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:11px 13px;}
+.rl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;}
+.rv{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;color:var(--lime);}
+.rs{font-size:10px;color:var(--dim);margin-top:2px;font-family:'JetBrains Mono',monospace;}
+.rb.thresh .rv{color:var(--orange);}
+.rb.vo2 .rv{color:var(--blue);}
+.hidden{display:none;}
+.pace-row{display:flex;gap:8px;margin-bottom:5px;align-items:center;}
+.pace-num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);width:42px;}
+.pbw{flex:1;height:20px;background:var(--surface);border-radius:3px;overflow:hidden;}
+.pb{height:100%;background:rgba(200,241,53,0.2);display:flex;align-items:center;padding:0 7px;transition:width 0.4s;}
+.pb span{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--lime);white-space:nowrap;}
+.pb.hard{background:rgba(244,63,94,0.18);}
+.pb.hard span{color:var(--red);}
+
+/* ── CHECK-IN ── */
+.ci-form{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px;max-width:100%;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px;}
+.cal-day-hdr{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--dim);text-align:center;padding:3px 0;letter-spacing:0.05em;}
+.cal-day{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:5px;text-align:center;font-size:11px;color:var(--dim);cursor:pointer;transition:all 0.15s;line-height:1.3;}
+.cal-day:hover{border-color:var(--lime);color:var(--white);}
+.cal-day.selected{background:rgba(200,241,53,0.15);border-color:var(--lime);color:var(--lime);}
+.cal-day.empty{opacity:0;pointer-events:none;}
+.cal-day .cal-date{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;}
+.ci-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.ci-field label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:4px;}
+.ci-field input{background:var(--surface);border:1px solid var(--border);border-radius:5px;color:var(--white);font-family:'JetBrains Mono',monospace;font-size:14px;padding:8px 10px;width:100%;outline:none;transition:border-color 0.15s;}
+.ci-field input:focus{border-color:var(--lime);}
+.ci-btn{background:var(--lime);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:6px;padding:10px 28px;cursor:pointer;transition:opacity 0.15s;}
+.ci-btn:hover{opacity:0.85;}
+.ci-date-display{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--lime);margin-bottom:12px;}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:14px;}
+.chart-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;}
+canvas{width:100%;}
+.log-hdr{display:grid;grid-template-columns:100px 70px 70px 70px 65px 50px 65px 65px 70px auto;gap:6px;padding:6px 0;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);}
+.log-row{display:grid;grid-template-columns:100px 70px 70px 70px 65px 50px 65px 65px 70px auto;gap:6px;padding:9px 0;border-bottom:1px solid rgba(37,43,51,0.4);font-size:12px;align-items:center;}
+.log-row:last-child{border-bottom:none;}
+.ld{font-family:'JetBrains Mono',monospace;font-size:10px;}
+.ld.neg{color:var(--lime);}.ld.pos{color:var(--red);}
+.ls{padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:8px;}
+.son{background:rgba(200,241,53,0.1);color:var(--lime);border:1px solid rgba(200,241,53,0.2);}
+.sbeh{background:rgba(249,115,22,0.1);color:var(--orange);border:1px solid rgba(249,115,22,0.2);}
+.sdl{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.2);}
+.del-btn{background:none;border:1px solid var(--border);border-radius:4px;color:var(--dim);font-size:10px;padding:2px 7px;cursor:pointer;}
+.del-btn:hover{border-color:var(--red);color:var(--red);}
+.empty-log{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);padding:18px 0;text-align:center;}
+.avg-row{background:rgba(200,241,53,0.05);border-top:1px solid rgba(200,241,53,0.2);padding:8px 0;display:grid;grid-template-columns:100px 80px 75px 75px 75px 80px 70px 70px auto;gap:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--lime);}
+
+/* ── LEVER ── */
+.lever{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 17px;margin-bottom:8px;display:grid;grid-template-columns:150px 1fr auto;gap:13px;align-items:start;}
+.ln{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--white);text-transform:uppercase;letter-spacing:0.3px;}
+.lw{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--dim);margin-top:2px;}
+.lever p{font-size:13px;color:var(--text);line-height:1.6;}
+
+/* ── SUPP ── */
+.supp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;}
+.sn2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--white);margin-bottom:2px;}
+.sd{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--lime);letter-spacing:0.06em;margin-bottom:7px;}
+.sc p{font-size:12px;color:var(--dim);line-height:1.6;}
+.sev{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:7px;}
+.ev1{background:rgba(200,241,53,0.1);color:var(--lime);}
+.ev2{background:rgba(96,165,250,0.1);color:var(--blue);}
+.ev3{background:rgba(107,117,133,0.15);color:var(--dim);}
+
+hr{border:none;border-top:1px solid var(--border);margin:22px 0;}
+.mb12{margin-bottom:12px;}.mb18{margin-bottom:18px;}.mt16{margin-top:16px;}.mt20{margin-top:20px;}
+.w{color:var(--white)!important;}.mono{font-family:'JetBrains Mono',monospace;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+@media(max-width:900px){.g3,.g4,.calc-grid,.rg,.ci-fields{grid-template-columns:1fr 1fr;}.lever{grid-template-columns:1fr;}}
+@media(max-width:620px){.g2,.g3,.g4,.supp-grid,.calc-grid,.rg,.ci-fields{grid-template-columns:1fr;}.hero h1{font-size:46px;}.panels{padding:18px 12px 60px;}.header{padding:0 12px;}.hero{padding:30px 14px 26px;}.log-hdr,.log-row,.avg-row{grid-template-columns:80px 65px 65px 1fr 50px;}.lever{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="hbrand">HYROX · SYD 2026</div>
+  <nav class="hnav">
+    <button class="nb active" onclick="go('brief')">Brief</button>
+    <button class="nb" onclick="go('plan')">Game Plan</button>
+    <button class="nb" onclick="go('training')">Training</button>
+    <button class="nb" onclick="go('nutrition')">Nutrition</button>
+    <button class="nb" onclick="go('checkin')">Daily Check-In</button>
+    <button class="nb" onclick="go('stations')">Stations</button>
+    <button class="nb" onclick="go('race')">Race Day</button>
+    <button class="nb" onclick="go('calculator')">Zone Calculator</button>
+    <button class="nb" onclick="go('supplements')">Supplements</button>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-eye">14-Week Playbook · 27 Mar – 2 Jul 2026</div>
+  <h1>HYROX<br><em>SYDNEY</em></h1>
+  <div class="hero-meta">
+    <div class="hmi"><div class="hml">Start Weight</div><div class="hmv" id="hero-start-weight">—</div></div>
+    <div class="hmi"><div class="hml">Weight Lost</div><div class="hmv accent" id="hero-lost">—</div></div>
+    <div class="hmi"><div class="hml">To Goal</div><div class="hmv" id="hero-to-goal">—</div></div>
+    <div class="hmi"><div class="hml">Race Date</div><div class="hmv">Thu 2 Jul 2026</div></div>
+    <div class="hmi"><div class="hml">Finish Goal</div><div class="hmv accent">~1:30:00</div></div>
+  </div>
+  <div id="hero-status" style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em;color:var(--dim);min-height:18px;"></div>
+</div>
+
+<div class="panels">
+
+<!-- ══ BRIEF ══ -->
+<div id="panel-brief" class="panel active">
+  <div class="sec">
+    <div class="sh"><div class="sn">01</div><div class="st">Where You Stand</div><div class="sl"></div></div>
+    <div class="g4 mb18" id="brief-stats">
+      <div class="stat">
+        <div class="stat-lbl">Body Weight</div>
+        <div class="stat-val" id="brief-weight">—</div>
+        <div class="stat-sub" id="brief-weight-sub">Log your first check-in to start</div>
+        <div class="stat-delta" id="brief-weight-delta" style="color:var(--dim);">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl">Body Fat</div>
+        <div class="stat-val blue" id="brief-bf">—</div>
+        <div class="stat-sub" id="brief-bf-sub">Log your first check-in to start</div>
+        <div class="stat-delta" id="brief-bf-delta" style="color:var(--dim);">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl">Lean Mass</div>
+        <div class="stat-val" id="brief-lean">—</div>
+        <div class="stat-sub" id="brief-lean-sub">Calculated from weight &amp; body fat</div>
+        <div class="stat-delta" id="brief-lean-delta" style="color:var(--dim);">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl">VO2 Max</div>
+        <div class="stat-val" id="brief-vo2">—</div>
+        <div class="stat-sub">Log in first check-in</div>
+      </div>
+    </div>
+
+    <div class="co crit mb12">
+      Struggling through short repeated runs at high bodyweight is a load problem, not an engine problem. Recorded VO2 max sits solidly average for age and gender — the aerobic base is there. The ceiling isn't fitness. It's bodyweight. Meaningful weight loss produces measurable performance gains in every session, every run, and every race station without changing a single thing about the training.
+    </div>
+    <div class="co warn mb18">
+      Hyrox is structured as 8 × 1km runs, each followed by a functional station. The running is where the race is decided — stations are fixed and predictable, running pace is where time is gained or lost. The training block is designed to build an aerobic engine capable of sustaining pace across all eight runs, even after the station work.
+    </div>
+
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Strengths Coming In</div>
+        <ul>
+          <li>Prior weight loss trajectory demonstrates the capacity for sustained multi-month adherence</li>
+          <li>CrossFit background: rowing, wall balls, carries, and conditioning are not starting from zero</li>
+          <li>Strong lean mass base — strength-to-bodyweight ratio improves meaningfully as the scale drops</li>
+          <li>Recorded VO2 max and resting HR suggest the cardiovascular system is more capable than race-day feel suggests</li>
+          <li>Tracking infrastructure in place: Whoop, MFP, Apple Watch — no setup lag</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">What This Block Develops</div>
+        <ul>
+          <li><strong class="w">Running under station fatigue</strong> — the specific Hyrox adaptation. Running well after station work is untrained. Phase 2 addresses this directly.</li>
+          <li><strong class="w">90-minute sustained output</strong> — CrossFit is interval-based. Hyrox is continuous elevated HR for ~90 minutes. The Zone 2 block builds the specific demand.</li>
+          <li><strong class="w">Station mechanics</strong> — SkiErg, sled, sandbag lunges require deliberate practice. CrossFit doesn't cover them.</li>
+          <li><strong class="w">Race pacing</strong> — going too hard on runs 1–3 degrades every station from 5 onward. Needs specific training to lock in.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sh"><div class="sn">02</div><div class="st">Priority Stack</div><div class="sl"></div></div>
+    <div class="tw">
+      <table class="tbl">
+        <thead><tr><th>Rank</th><th>What</th><th>Why</th><th>How</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag tr">#1</span></td><td class="w">Calorie deficit, daily</td><td>Body composition is the single biggest performance lever. Nothing else compounds if this isn't consistent.</td><td><span class="tag tl">MFP daily</span></td></tr>
+          <tr><td><span class="tag to">#2</span></td><td class="w">210g protein, daily</td><td>In a deficit, protein is the barrier between fat loss and muscle loss. It's not optional.</td><td><span class="tag tl">MFP daily</span></td></tr>
+          <tr><td><span class="tag to">#3</span></td><td class="w">Running progression</td><td>The race is decided here. Aerobic base + running under fatigue are the specific adaptations needed.</td><td><span class="tag tb">Runna Hyrox</span></td></tr>
+          <tr><td><span class="tag tb">#4</span></td><td class="w">CrossFit 4x/week</td><td>Muscle preservation, conditioning, and station-relevant strength. The structural anchor of the week.</td><td><span class="tag tl">PRVN</span></td></tr>
+          <tr><td><span class="tag tb">#5</span></td><td class="w">Zone 2 add-ons post-run</td><td>Extends aerobic stimulus without joint impact. Stairmaster, bike, SkiErg, and rowing rotate as modalities.</td><td><span class="tag tp">Post-run</span></td></tr>
+          <tr><td><span class="tag tg">#6</span></td><td class="w">Station accessory work</td><td>Weighted lunges, sled mechanics, burpee BJs. Starts Phase 2 as deliberate CF accessory.</td><td><span class="tag to">Phase 2+</span></td></tr>
+          <tr><td><span class="tag tg">#7</span></td><td class="w">Sleep 7–8hrs</td><td>Caloric restriction in a high-training environment makes sleep a recovery asset with measurable output on performance and fat loss rate.</td><td><span class="tag tg">Non-neg</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GAME PLAN ══ -->
+<div id="panel-plan" class="panel">
+  <div class="sec">
+    <div class="sh"><div class="sn">03</div><div class="st">Phase Structure</div><div class="sl"></div></div>
+    <div class="co mb12"><strong>Throughout: 3 weeks on, 1 week deload.</strong> Deload weeks reduce CrossFit to 3 sessions, run volume to 70%, and Zone 2 add-ons to 20 minutes. The load comes down — training doesn't stop. Deload weeks: Week 4, Week 8, Week 12.</div>
+
+    <div class="phase">
+      <div class="pspine"><div class="pdot"></div><div class="pconn"></div></div>
+      <div class="pbody">
+        <div class="pwk">Phase 1 · Weeks 1–9 · 29 Mar – 26 May</div>
+        <div class="pname">Base Build — Murph Block</div>
+        <p>Murph programming runs until 26 May (Memorial Day weekend). The block is endurance-biased — that's exactly the right stimulus for building an aerobic base ahead of Hyrox. One session per week carries a Murph-style structure with heavier running load. On those weeks, total run volume for the day (CF + Runna) is elevated — manage cumulative fatigue accordingly.</p>
+        <ul>
+          <li><strong>CrossFit:</strong> 4x/week following your box's programming.</li>
+          <li><strong>Running:</strong> Runna 5km rebuild until 26 April. Switch to Runna Hyrox plan on 27 April — input 2 July as race date. Continue 2x/week throughout Phase 1.</li>
+          <li><strong>Zone 2 add-ons:</strong> Stack 30–40min Stairmaster or static bike onto both Runna sessions immediately after. Target HR 141–151 bpm. Must stay conversational. Deload weeks: 20min only.</li>
+          <li><strong>No station-specific work yet.</strong> Building the base before layering station practice on top of it.</li>
+          <li><strong>Nutrition:</strong> 2,350 kcal / 210P / 215C / 72F from Day 1.</li>
+          <li><strong>Deload weeks:</strong> Week 4 (21 Apr) and Week 8 (19 May).</li>
+          <li><strong>CF In-House Comp (Sat 3 May):</strong> Full effort. No taper. Training day with a crowd.</li>
+          <li><strong>Target:</strong> On pace to lose ~40% of your total goal by 26 May</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="pspine"><div class="pdot"></div><div class="pconn"></div></div>
+      <div class="pbody">
+        <div class="pwk">Transition · 26–27 April</div>
+        <div class="pname">Switch Runna Plans</div>
+        <p>5km rebuild ends 26 April. On 27 April: open Runna, start the Hyrox plan, set race date to 2 July. Answer the fitness setup questions accurately — the plan builds backwards from the race date at your current level. ~9 weeks to race day at this point.</p>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="pspine"><div class="pdot"></div><div class="pconn"></div></div>
+      <div class="pbody">
+        <div class="pwk">Phase 2 · Weeks 10–13 · 27 May – 22 Jun</div>
+        <div class="pname">Hyrox-Specific Build</div>
+        <p>CrossFit shifts back to strength and mixed-modal post-Murph. Running stays on the Runna Hyrox plan. Station-specific work is added as deliberate accessory within CF — not full race simulations, but targeted movement practice and muscular endurance.</p>
+        <ul>
+          <li><strong>CrossFit:</strong> 4x/week. Weighted lunges in every session with accessory time. Sandbag lunges and burpee broad jumps are the two highest-risk stations — they need volume from this point forward.</li>
+          <li><strong>Running:</strong> Runna Hyrox plan continues. Zone 2 add-ons continue post-run.</li>
+          <li><strong>Zone 2 rotation:</strong> Introduce SkiErg and C2 rowing into Zone 2 add-ons alongside Stairmaster/bike. Builds Hyrox-specific muscular endurance on race equipment at aerobic intensity. 20–40min at 141–151 bpm.</li>
+          <li><strong>Backwards sled pull:</strong> 3–4 sets as CF accessory, 1–2x/week. Light load. Walk backwards pulling the sled — knee and IT band mobility work. Controlled, not heavy.</li>
+          <li><strong>Sled push:</strong> Find a gym with a sled before 27 May. 3–4 practice sessions before race day — mechanics need deliberate learning before you race them.</li>
+          <li><strong>Deload:</strong> Week 12 (16 Jun). 3x CF, maintain running, shorten Zone 2.</li>
+          <li><strong>Nutrition:</strong> Review at Week 10. If within 1kg of 100kg target, shift to maintenance (~2,750 kcal, ~280g carbs) to support performance into race week.</li>
+          <li><strong>Target:</strong> ~90% of total goal loss achieved by 22 Jun</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="pspine"><div class="pdot r"></div><div class="pconn" style="background:transparent;"></div></div>
+      <div class="pbody" style="border-color:rgba(244,63,94,0.3);">
+        <div class="pwk" style="color:var(--red);">Race Week · 23 Jun – 2 Jul</div>
+        <div class="pname">Taper</div>
+        <p>The fitness built over 13 weeks is set. This week is about arriving fresh. Nothing added here improves race-day performance — the risk is damage, not gain.</p>
+        <ul>
+          <li><strong>Mon 23 Jun:</strong> Light CF — skill work only, no conditioning. 30min max.</li>
+          <li><strong>Tue 24 Jun:</strong> Easy run 3–4km, conversational. No Zone 2 add-on.</li>
+          <li><strong>Wed 25 Jun:</strong> Full rest or 20min walk.</li>
+          <li><strong>Thu 26 Jun:</strong> Activation only — 15min SkiErg or row, moderate pace.</li>
+          <li><strong>Fri 27 Jun:</strong> Full rest. Eat well. Sleep 8hrs. Sodium loading starts.</li>
+          <li><strong>Sat 28 Jun:</strong> Rest or travel. Light walk only.</li>
+          <li><strong>Sun 29 Jun–Wed 1 Jul:</strong> Rest. Eat carbs. Sleep.</li>
+          <li><strong style="color:var(--red);">Thu 2 July: Race Day</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sh"><div class="sn">04</div><div class="st">Weight Trajectory</div><div class="sl"></div></div>
+    <div id="traj-no-config" class="co" style="font-size:13px;">Set your start weight and goal in the Daily Check-In tab to see your personalised trajectory.</div>
+    <div id="traj-table-wrap" class="tw" style="display:none;">
+      <table class="tbl">
+        <thead><tr><th>Checkpoint</th><th>Date</th><th>Target</th><th>Progress</th><th>If Off-Track</th></tr></thead>
+        <tbody id="traj-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRAINING ══ -->
+<div id="panel-training" class="panel">
+  <div class="sec">
+    <div class="sh"><div class="sn">05</div><div class="st">Weekly Structure</div><div class="sl"></div></div>
+    <div class="co mb12"><strong>The week: CrossFit 4x, Runna 2x, rest 1x.</strong> Zone 2 add-ons stack onto both run days — not extra sessions. The Murph-style CF session (one per week, weekday TBC by your box) carries heavier running load: on those weeks, monitor total run volume across both CF and Runna.</div>
+    <div class="co warn mb18">Key: <span class="tag tl">Phase 1 CrossFit/Run</span> <span class="tag tb">Phase 2 CrossFit/Run</span> <span class="tag tp">Phase 2 Z2 SkiErg/Row</span> <span class="tag to">Deload</span> <span class="tag tg">Rest</span></div>
+
+    <div style="overflow-x:auto;">
+      <div class="wk-hdr-row" style="min-width:520px; padding-left:0; margin-bottom:2px;">
+        <div class="wk-hdr">SUN</div><div class="wk-hdr">MON</div><div class="wk-hdr">TUE</div><div class="wk-hdr">WED</div>
+        <div class="wk-hdr">THU</div><div class="wk-hdr">FRI</div><div class="wk-hdr">SAT</div>
+      </div>
+
+      <!-- Phase 1: Weeks 1-3 (29 Mar – 18 Apr) -->
+      <div class="wk-section" style="min-width:520px;">
+        <div class="wk-section-label">Phase 1 · Weeks 1–3 · 29 Mar – 18 Apr</div>
+        <div class="wk-grid">
+          <div class="day rest"><div class="dn">Sun</div><div class="dd">29 Mar</div>Rest</div>
+          <div class="day cf"><div class="dn">Mon</div><div class="dd">30 Mar</div>CrossFit</div>
+          <div class="day cf"><div class="dn">Tue</div><div class="dd">31 Mar</div>CrossFit</div>
+          <div class="day run"><div class="dn">Wed</div><div class="dd">1 Apr</div>Runna<br>+ 30–40min Z2</div>
+          <div class="day cf"><div class="dn">Thu</div><div class="dd">2 Apr</div>CrossFit</div>
+          <div class="day cf"><div class="dn">Fri</div><div class="dd">3 Apr</div>CrossFit</div>
+          <div class="day run"><div class="dn">Sat</div><div class="dd">4 Apr</div>Runna<br>+ 30–40min Z2</div>
+        </div>
+        <div style="font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;padding:4px 0;">↑ Repeat same structure for Weeks 2–3 (6–18 Apr)</div>
+      </div>
+
+      <!-- Week 4: Deload (19–25 Apr) -->
+      <div class="wk-section" style="min-width:520px;">
+        <div class="wk-section-label deload">Deload · Week 4 · 20–26 Apr</div>
+        <div class="wk-grid">
+          <div class="day rest"><div class="dn">Sun</div><div class="dd">20 Apr</div>Rest</div>
+          <div class="day dl"><div class="dn">Mon</div><div class="dd">21 Apr</div>CrossFit<br>lighter</div>
+          <div class="day dl"><div class="dn">Tue</div><div class="dd">22 Apr</div>CrossFit<br>lighter</div>
+          <div class="day run"><div class="dn">Wed</div><div class="dd">23 Apr</div>Runna 70%<br>+ 20min Z2</div>
+          <div class="day rest"><div class="dn">Thu</div><div class="dd">24 Apr</div>Rest</div>
+          <div class="day dl"><div class="dn">Fri</div><div class="dd">25 Apr</div>CrossFit<br>lighter</div>
+          <div class="day run"><div class="dn">Sat</div><div class="dd">26 Apr</div>Runna 70%<br>+ 20min Z2<br><span style="color:var(--lime);font-size:8px;">5km ENDS</span></div>
+        </div>
+      </div>
+
+      <!-- Phase 1 cont: Weeks 5-7 (27 Apr – 17 May) -->
+      <div class="wk-section" style="min-width:520px;">
+        <div class="wk-section-label">Phase 1 cont. · Weeks 5–7 · 27 Apr – 17 May</div>
+        <div class="wk-grid">
+          <div class="day rest"><div class="dn">Sun</div><div class="dd">27 Apr</div>Rest<br><span style="color:var(--lime);font-size:8px;">SWITCH RUNNA→HYROX</span></div>
+          <div class="day cf"><div class="dn">Mon</div><div class="dd">28 Apr</div>CrossFit</div>
+          <div class="day cf"><div class="dn">Tue</div><div class="dd">29 Apr</div>CrossFit</div>
+          <div class="day run"><div class="dn">Wed</div><div class="dd">30 Apr</div>Runna Hyrox<br>+ 30–40min Z2</div>
+          <div class="day cf"><div class="dn">Thu</div><div class="dd">1 May</div>CrossFit</div>
+          <div class="day cf"><div class="dn">Fri</div><div class="dd">2 May</div>CrossFit</div>
+          <div class="day run"><div class="dn">Sat</div><div class="dd">3 May</div>Runna Hyrox<br>+ 30–40min Z2<br><span style="color:var(--orange);font-size:8px;">IN-HOUSE COMP</span></div>
+        </div>
+        <div style="font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;padding:4px 0;">↑ Repeat same structure for Weeks 6–7 (4–17 May). Murph block ends 26 May.</div>
+      </div>
+
+      <!-- Week 8: Deload (18–24 May) -->
+      <div class="wk-section" style="min-width:520px;">
+        <div class="wk-section-label deload">Deload · Week 8 · 18–24 May</div>
+        <div class="wk-grid">
+          <div class="day rest"><div class="dn">Sun</div><div class="dd">18 May</div>Rest</div>
+          <div class="day dl"><div class="dn">Mon</div><div class="dd">19 May</div>CrossFit<br>lighter</div>
+          <div class="day dl"><div class="dn">Tue</div><div class="dd">20 May</div>CrossFit<br>lighter</div>
+          <div class="day run"><div class="dn">Wed</div><div class="dd">21 May</div>Runna 70%<br>+ 20min Z2</div>
+          <div class="day rest"><div class="dn">Thu</div><div class="dd">22 May</div>Rest</div>
+          <div class="day dl"><div class="dn">Fri</div><div class="dd">23 May</div>CrossFit<br>lighter</div>
+          <div class="day run"><div class="dn">Sat</div><div class="dd">24 May</div>Runna 70%<br>+ 20min Z2<br><span style="color:var(--orange);font-size:8px;">MURPH DAY</span></div>
+        </div>
+      </div>
+
+      <!-- Phase 2: Weeks 10-11 (25 May – 14 Jun) -->
+      <div class="wk-section" style="min-width:520px;">
+        <div class="wk-section-label phase2">Phase 2 · Weeks 9–11 · 25 May – 14 Jun</div>
+        <div class="wk-grid">
+          <div class="day rest"><div class="dn">Sun</div><div class="dd">25 May</div>Rest</div>
+          <div class="day cf"><div class="dn">Mon</div><div class="dd">26 May</div>CrossFit<br>+ lunges</div>
+          <div class="day cf"><div class="dn">Tue</div><div class="dd">27 May</div>CrossFit<br>+ lunges</div>
+          <div class="day run"><div class="dn">Wed</div><div class="dd">28 May</div>Runna Hyrox<br>+ Z2 erg/bike</div>
+          <div class="day cf"><div class="dn">Thu</div><div class="dd">29 May</div>CrossFit<br>+ sled pull</div>
+          <div class="day cf"><div class="dn">Fri</div><div class="dd">30 May</div>CrossFit</div>
+          <div class="day run" style="border-top-color:var(--purple);"><div class="dn">Sat</div><div class="dd">31 May</div>Runna Hyrox<br>+ Z2 SkiErg/Row</div>
+        </div>
+        <div style="font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;padding:4px 0;">↑ Repeat same structure for Weeks 10–11 (1–14 Jun)</div>
+      </div>
+
+      <!-- Week 12: Deload (15–21 Jun) -->
+      <div class="wk-section" style="min-width:520px;">
+        <div class="wk-section-label deload">Deload · Week 12 · 15–21 Jun</div>
+        <div class="wk-grid">
+          <div class="day rest"><div class="dn">Sun</div><div class="dd">15 Jun</div>Rest</div>
+          <div class="day dl"><div class="dn">Mon</div><div class="dd">16 Jun</div>CrossFit<br>lighter</div>
+          <div class="day dl"><div class="dn">Tue</div><div class="dd">17 Jun</div>CrossFit<br>lighter</div>
+          <div class="day run"><div class="dn">Wed</div><div class="dd">18 Jun</div>Runna 70%<br>+ 20min Z2</div>
+          <div class="day rest"><div class="dn">Thu</div><div class="dd">19 Jun</div>Rest</div>
+          <div class="day dl"><div class="dn">Fri</div><div class="dd">20 Jun</div>CrossFit<br>lighter</div>
+          <div class="day run"><div class="dn">Sat</div><div class="dd">21 Jun</div>Runna 70%<br>+ 20min Z2</div>
+        </div>
+      </div>
+
+      <!-- Race Week -->
+      <div class="wk-section" style="min-width:520px;">
+        <div class="wk-section-label race">Race Week · 22 Jun – 2 Jul</div>
+        <div class="wk-grid">
+          <div class="day rest"><div class="dn">Sun</div><div class="dd">22 Jun</div>Rest</div>
+          <div class="day cf"><div class="dn">Mon</div><div class="dd">23 Jun</div>Light CF<br>skill only</div>
+          <div class="day run"><div class="dn">Tue</div><div class="dd">24 Jun</div>Easy run<br>3–4km</div>
+          <div class="day rest"><div class="dn">Wed</div><div class="dd">25 Jun</div>Rest/walk</div>
+          <div class="day cf"><div class="dn">Thu</div><div class="dd">26 Jun</div>Activation<br>15min only</div>
+          <div class="day rest"><div class="dn">Fri</div><div class="dd">27 Jun</div>Full rest</div>
+          <div class="day rest"><div class="dn">Sat</div><div class="dd">28 Jun</div>Rest/travel</div>
+        </div>
+        <div class="wk-grid" style="margin-top:3px;">
+          <div class="day rest"><div class="dn">Sun</div><div class="dd">29 Jun</div>Rest</div>
+          <div class="day rest"><div class="dn">Mon</div><div class="dd">30 Jun</div>Rest</div>
+          <div class="day rest"><div class="dn">Tue</div><div class="dd">1 Jul</div>Rest</div>
+          <div class="day race-day"><div class="dn">Thu</div><div class="dd">2 Jul</div>🏁 RACE DAY</div>
+          <div class="day rest" style="opacity:0;"></div>
+          <div class="day rest" style="opacity:0;"></div>
+          <div class="day rest" style="opacity:0;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec mt20">
+    <div class="sh"><div class="sn">06</div><div class="st">Zone 2 Add-On Sessions</div><div class="sl"></div></div>
+    <div class="co mb12"><strong>Target HR: 141–151 bpm</strong> (Maffetone: 180 − age 34 = 146 target). Conversational pace. If you can't speak in full sentences, you're above Zone 2. These stack onto run days only — not standalone sessions. Run the assessments in the Zone Calculator tab for your precise paces on each modality.</div>
+    <div class="tw mb18">
+      <table class="tbl">
+        <thead><tr><th>Phase</th><th>Modalities</th><th>Duration</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Phase 1</td><td class="w">Stairmaster or static bike</td><td>30–40min<br>Deload: 20min</td><td>Stack onto both Runna sessions post-run. Stairmaster preferred over bike where knees tolerate it — greater glute and posterior chain engagement.</td></tr>
+          <tr><td>Phase 2</td><td class="w">SkiErg, C2 row, Stairmaster, static bike — rotate</td><td>20–40min<br>Deload: 20min</td><td>Rotating SkiErg and rowing builds Hyrox-specific muscular endurance on race equipment at aerobic intensity. Don't default to bike every session.</td></tr>
+          <tr><td>Race week</td><td class="w">None</td><td>—</td><td>Drop all Zone 2 add-ons. The base is set.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sh"><div class="sn">07</div><div class="st">Station Accessory Work (Phase 2)</div><div class="sl"></div></div>
+    <div class="co mb12">No full race simulations — station work lives inside CF sessions as deliberate accessory. The running-under-fatigue adaptation comes from the Runna Hyrox plan's built-in structure.</div>
+    <div class="tw">
+      <table class="tbl">
+        <thead><tr><th>Movement</th><th>Where</th><th>From</th><th>Goal</th></tr></thead>
+        <tbody>
+          <tr><td class="w">Weighted lunges</td><td>CF accessory, every session</td><td>27 May</td><td>3×20 at moderate load. Sandbag on shoulder, goblet, or barbell. Volume builds muscular endurance — not 3×6 heavy.</td></tr>
+          <tr><td class="w">Burpee broad jump</td><td>CF WODs as they appear</td><td>Phase 2</td><td>You don't need dedicated burpee sessions — CrossFit covers the conditioning base. When burpees appear in WODs, practise the broad jump landing and drive pattern rather than the standard CF vertical. Pacing awareness (10 reps, breathe, repeat) is more important than additional volume.</td></tr>
+          <tr><td class="w">Backwards sled pull</td><td>CF accessory 1–2x/week</td><td>27 May</td><td>3–4 sets, light. Walk backwards pulling the sled. Knee and IT band mobility — keep it controlled.</td></tr>
+          <tr><td class="w">SkiErg</td><td>Zone 2 rotation + CF warm-up</td><td>27 May</td><td>Zone 2 SkiErg sessions build arm endurance on the specific race equipment. Replace rowing warm-ups with SkiErg when available.</td></tr>
+          <tr><td class="w">Farmers carry</td><td>CF WODs</td><td>Ongoing</td><td>Treat every CF carry as deliberate station practice. Don't put weights down mid-set.</td></tr>
+          <tr><td class="w">Sled push</td><td>Separate gym with sled</td><td>Before 27 May</td><td>Find access before Phase 2. 3–4 practice sessions minimum. Movement pattern needs deliberate learning before race day.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NUTRITION ══ -->
+<div id="panel-nutrition" class="panel">
+  <div class="sec">
+    <div class="sh"><div class="sn">08</div><div class="st">Daily Targets</div><div class="sl"></div></div>
+    <div class="g2 mb18">
+      <div class="card" style="opacity:0.5;">
+        <div class="card-lbl">Maintenance Baseline (3,300 kcal TDEE)</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:40px;color:var(--dim);line-height:1;margin:7px 0;">3,300 <span style="font-size:16px;">kcal</span></div>
+        <p style="font-size:12px;color:var(--dim);">Estimated TDEE at starting bodyweight with CrossFit 4x/week + 2x running. This is the maintenance level — everything below creates a deficit, everything above gains.</p>
+      </div>
+      <div class="card" style="border-color:rgba(200,241,53,0.3);">
+        <div class="card-lbl" style="color:var(--lime);">Fat Loss Target — Use This Daily</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:40px;color:var(--lime);line-height:1;margin:7px 0;">2,350 <span style="font-size:16px;color:var(--dim);">kcal</span></div>
+        <div class="mr"><div class="mt2"><span class="mn">Protein</span><span class="ma" style="color:var(--white);">210g · 840 kcal</span></div><div class="mb"><div class="mf" style="width:60%;background:var(--blue);"></div></div></div>
+        <div class="mr"><div class="mt2"><span class="mn">Carbs</span><span class="ma" style="color:var(--white);">215g · 860 kcal</span></div><div class="mb"><div class="mf" style="width:60%;background:var(--lime);"></div></div></div>
+        <div class="mr"><div class="mt2"><span class="mn">Fat</span><span class="ma" style="color:var(--white);">72g · 648 kcal</span></div><div class="mb"><div class="mf" style="width:42%;background:var(--orange);"></div></div></div>
+        <p style="margin-top:9px;font-size:12px;color:var(--dim);">950 kcal/day below maintenance. At this training volume: ~0.8–0.9kg fat loss/week. Sufficient for 10kg loss over 14 weeks with muscle retention at 210g protein.</p>
+      </div>
+    </div>
+
+    <div class="co warn mb12"><strong>Race prep (Weeks 12–14):</strong> If within 1kg of 100kg target, shift to maintenance. Bring carbs to ~280g. Performance is the priority for the final two weeks — arriving at the start line glycogen-depleted is not a strategy.</div>
+
+    <div class="tw mb12">
+      <table class="tbl">
+        <thead><tr><th>Decision</th><th>Reasoning</th></tr></thead>
+        <tbody>
+          <tr><td class="w">Why 2,350 not higher?</td><td>950 kcal/day below a 3,300 TDEE. Produces ~0.8–0.9kg/week fat loss. Sufficient to hit 100kg by July 2 with a small buffer. Higher calories slow progress; lower calories increase muscle loss risk at this training load.</td></tr>
+          <tr><td class="w">Why 210g protein?</td><td>~1.9g/kg lean mass — upper end of evidence-based targets for muscle preservation in aggressive deficit + high training volume. Protein also has the highest thermic effect of any macro — processing it costs calories.</td></tr>
+          <tr><td class="w">Why not cut fat lower?</td><td>Fat floor at 65g preserves testosterone production and cortisol regulation during deficit. Going below increases hormonal disruption risk without meaningful additional fat loss.</td></tr>
+          <tr><td class="w">The adjustment dial</td><td>Always carbs first. Protein stays at 210g. Fat stays above 65g. Carbs are the only lever. Up 150 kcal if losing too fast. Down 150 kcal if stalling after MFP audit.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sh"><div class="sn">09</div><div class="st">Meal Timing</div><div class="sl"></div></div>
+    <div class="tw mb12">
+      <table class="tbl">
+        <thead><tr><th>Time</th><th>Occasion</th><th>Target</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td class="mono" style="font-size:10px;">~6:30am</td><td class="w">Pre-workout snack</td><td>~200 kcal<br>5P / 40C / 3F</td><td>Fast carbohydrates to fuel the training session. Keeps MPS primed before the workout window. Keep it as-is.</td></tr>
+          <tr><td class="mono" style="font-size:10px;">~8:30am</td><td class="w">Post-workout breakfast</td><td>~550 kcal<br>50P / 50C / 15F</td><td>Hits protein when MPS peaks (1–2hrs post-training). Replenishes glycogen from the session. Priority meal of the day for recovery.</td></tr>
+          <tr><td class="mono" style="font-size:10px;">~10:00am</td><td class="w">Mid-morning snack</td><td>~250 kcal<br>25P / 20C / 8F</td><td>Distributes protein across the day. Front-loading all protein into 2 meals leaves muscle protein synthesis understimulated for hours at a time.</td></tr>
+          <tr><td class="mono" style="font-size:10px;">~1:00pm</td><td class="w">Lunch</td><td>~550 kcal<br>50P / 55C / 15F</td><td>Largest meal window. Complex carbohydrates here fuel afternoon training capacity and support recovery from morning session.</td></tr>
+          <tr><td class="mono" style="font-size:10px;">~3:00pm</td><td class="w">Afternoon snack</td><td>~200 kcal<br>20P / 20C / 5F</td><td>Bridges the afternoon gap. Prevents arriving at dinner over-hungry, which drives overconsumption and poor food choices.</td></tr>
+          <tr><td class="mono" style="font-size:10px;">~7:00pm</td><td class="w">Dinner</td><td>~600 kcal<br>60P / 30C / 26F</td><td>Highest protein meal of the day. Lower carbs are appropriate here — carbohydrates are most valuable around training, not at rest in the evening. Higher fat at dinner is compatible with that structure.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="co">Flexible dieting applies throughout. Any food fits within macros. Don't track trace seasonings or small vegetable portions. Precision within ±5% per day is sufficient for outcomes. Sustainable adherence over 14 weeks matters far more than daily perfection.</div>
+  </div>
+
+  <div class="sec">
+    <div class="sh"><div class="sn">10</div><div class="st">Review Protocol</div><div class="sl"></div></div>
+    <div class="tw">
+      <table class="tbl">
+        <thead><tr><th>When</th><th>Check</th><th>Decision Rule</th></tr></thead>
+        <tbody>
+          <tr><td>Every day</td><td class="w">Log daily weight</td><td>Morning, post-void, pre-food. Same conditions. Use the Daily Check-In tab — it calculates 7-day averages automatically.</td></tr>
+          <tr><td>Every Monday</td><td class="w">7-day rolling average</td><td>This is the real number. Don't react to single days — water, glycogen, and sodium all create daily noise that obscures fat loss progress.</td></tr>
+          <tr><td>Weeks 2, 4, 8, 10, 12</td><td class="w">2-week trend</td><td>Losing &gt;0.85kg/wk for 2 weeks → add 150 kcal from carbs. Losing &lt;0.4kg/wk for 2 weeks → audit MFP accuracy first, then cut 150 kcal from carbs.</td></tr>
+          <tr><td>Week 12</td><td class="w">Weight vs 100kg</td><td>Within 1kg → shift to maintenance + raise carbs to ~280g. More than 2kg off → stay in deficit, weekly audit.</td></tr>
+          <tr><td>Social events</td><td class="w">Context, not crisis</td><td>4–5 imperfect days across 14 weeks is ~4% variance. Don't skip events. Don't compensate next day — that pattern creates restriction-rebound cycles that degrade adherence.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ZONE CALCULATOR ══ -->
+<div id="panel-calculator" class="panel">
+  <div class="sec">
+    <div class="sh"><div class="sn">11</div><div class="st">Aerobic Zone Calculator</div><div class="sl"></div></div>
+
+    <div class="co mb12">
+      <strong>What this is:</strong> A pace and intensity calculator that takes two simple timed tests — a 1-minute max effort and a 6-minute max effort — and outputs your personalised training zones for running, rowing, and SkiErg. These zones calibrate the intensity of your Zone 2 add-on sessions and erg work in Phase 2, so you're training at the right level rather than guessing.
+    </div>
+    <div class="co warn mb18">
+      <strong>How to run the tests</strong> — do these on separate days or with 30+ minutes rest between them:<br>
+      <strong>1-min test:</strong> Max effort for exactly 60 seconds on treadmill/track or erg. Record metres covered.<br>
+      <strong>6-min test:</strong> Max sustained effort for exactly 6 minutes. Record metres covered. This is your primary test — give it full effort. It's the basis for all zone calculations.<br>
+      <strong>When:</strong> Run these once at the start of Phase 2 (late May) and again at Week 12 to see how zones have shifted. Don't test during deload weeks or when fatigued.
+    </div>
+
+    <div class="calc-grid">
+      <div class="cblock">
+        <h3>Running Zones</h3>
+        <div class="ir"><label>1-min test</label><input type="number" id="run1" placeholder="e.g. 230" min="50" max="600"><span class="un">metres</span></div>
+        <div class="ir"><label>6-min test</label><input type="number" id="run6" placeholder="e.g. 1100" min="300" max="2500"><span class="un">metres</span></div>
+        <button class="cbtn" onclick="calcRun()">Calculate</button>
+        <div id="run-res" class="hidden">
+          <div class="rg">
+            <div class="rb"><div class="rl">Zone 2 / Aerobic</div><div class="rv" id="r-z2">—</div><div class="rs" id="r-z2b">—</div></div>
+            <div class="rb thresh"><div class="rl">Lactate Threshold</div><div class="rv" id="r-lt">—</div><div class="rs" id="r-ltb">—</div></div>
+            <div class="rb vo2"><div class="rl">VO2max</div><div class="rv" id="r-vo2">—</div><div class="rs" id="r-vo2b">—</div></div>
+          </div>
+          <div style="margin-top:11px;" id="r-ff"></div>
+        </div>
+      </div>
+
+      <div class="cblock">
+        <h3>C2 Row Zones</h3>
+        <div class="ir"><label>1-min test</label><input type="number" id="row1" placeholder="e.g. 300" min="50" max="600"><span class="un">metres</span></div>
+        <div class="ir"><label>6-min test</label><input type="number" id="row6" placeholder="e.g. 1600" min="300" max="3000"><span class="un">metres</span></div>
+        <button class="cbtn" onclick="calcRow()">Calculate</button>
+        <div id="row-res" class="hidden">
+          <div class="rg">
+            <div class="rb"><div class="rl">Zone 2 / Aerobic</div><div class="rv" id="rw-z2">—</div><div class="rs" id="rw-z2b">—</div></div>
+            <div class="rb thresh"><div class="rl">Lactate Threshold</div><div class="rv" id="rw-lt">—</div><div class="rs" id="rw-ltb">—</div></div>
+            <div class="rb vo2"><div class="rl">VO2max</div><div class="rv" id="rw-vo2">—</div><div class="rs" id="rw-vo2b">—</div></div>
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim);" id="rw-ff"></div>
+        </div>
+      </div>
+
+      <div class="cblock">
+        <h3>SkiErg Zones</h3>
+        <div class="ir"><label>1-min test</label><input type="number" id="ski1" placeholder="e.g. 210" min="50" max="500"><span class="un">metres</span></div>
+        <div class="ir"><label>6-min test</label><input type="number" id="ski6" placeholder="e.g. 1100" min="300" max="2500"><span class="un">metres</span></div>
+        <button class="cbtn" onclick="calcSki()">Calculate</button>
+        <div id="ski-res" class="hidden">
+          <div class="rg">
+            <div class="rb"><div class="rl">Zone 2 / Aerobic</div><div class="rv" id="sk-z2">—</div><div class="rs" id="sk-z2b">—</div></div>
+            <div class="rb thresh"><div class="rl">Lactate Threshold</div><div class="rv" id="sk-lt">—</div><div class="rs" id="sk-ltb">—</div></div>
+            <div class="rb vo2"><div class="rl">VO2max</div><div class="rv" id="sk-vo2">—</div><div class="rs" id="sk-vo2b">—</div></div>
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim);" id="sk-ff"></div>
+        </div>
+      </div>
+
+      <div class="cblock">
+        <h3>1:30 Target Run Splits</h3>
+        <p style="font-size:12px;color:var(--dim);margin-bottom:12px;">90-minute finish. Run budget ~53% of total time based on Open Men race data. Runs get harder — plan for it.</p>
+        <div class="pace-row"><div class="pace-num">Run 1</div><div class="pbw"><div class="pb" style="width:54%"><span>5:31/km</span></div></div></div>
+        <div class="pace-row"><div class="pace-num">Run 2</div><div class="pbw"><div class="pb" style="width:57%"><span>5:42/km</span></div></div></div>
+        <div class="pace-row"><div class="pace-num">Run 3</div><div class="pbw"><div class="pb" style="width:60%"><span>5:56/km</span></div></div></div>
+        <div class="pace-row"><div class="pace-num">Run 4</div><div class="pbw"><div class="pb" style="width:61%"><span>5:59/km</span></div></div></div>
+        <div class="pace-row"><div class="pace-num">Run 5</div><div class="pbw"><div class="pb hard" style="width:64%"><span>6:09/km ↑</span></div></div></div>
+        <div class="pace-row"><div class="pace-num">Run 6</div><div class="pbw"><div class="pb hard" style="width:63%"><span>6:04/km ↑</span></div></div></div>
+        <div class="pace-row"><div class="pace-num">Run 7</div><div class="pbw"><div class="pb hard" style="width:64%"><span>6:06/km ↑</span></div></div></div>
+        <div class="pace-row"><div class="pace-num">Run 8</div><div class="pbw"><div class="pb hard" style="width:74%"><span>7:08/km ↑</span></div></div></div>
+        <p style="font-size:10px;color:var(--dim);margin-top:8px;font-family:'JetBrains Mono',monospace;">Red = expected pace drop from fatigue. Don't fight it. Plan for it.</p>
+      </div>
+    </div>
+
+    <div class="sh" style="margin-top:24px;"><div class="sn">12</div><div class="st">Zone Reference Guide</div><div class="sl"></div></div>
+    <div class="tw">
+      <table class="tbl">
+        <thead><tr><th>Zone</th><th>Use For</th><th>How It Feels</th><th>Apple Watch HR</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag tp">Z2 / Aerobic</span></td><td>All post-run add-ons. SkiErg Z2. Row Z2. Stairmaster/bike sessions.</td><td>Comfortable conversation. Could sustain for hours. Nose breathing possible.</td><td>141–151 bpm. Target 146. Watch Zone 2.</td></tr>
+          <tr><td><span class="tag to">Lactate Threshold</span></td><td>Runna Hyrox plan tempo sessions. Use paces from calculator above.</td><td>Comfortably hard. Short sentences. Sustainable for 20–40min.</td><td>~165–175 bpm. Watch Zone 4.</td></tr>
+          <tr><td><span class="tag tb">VO2max</span></td><td>Runna Hyrox interval sessions only. 1x/week max. Not for Z2 add-ons.</td><td>Hard. Short phrases only. Per-rep sustainable for 30sec–3min.</td><td>&gt;175 bpm. Watch Zone 5.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STATIONS ══ -->
+<div id="panel-stations" class="panel">
+  <div class="sec">
+    <div class="sh"><div class="sn">13</div><div class="st">Station Risk Profile</div><div class="sl"></div></div>
+    <div class="co crit mb12">"It's an endurance race. A running race. Not functional fitness. The time is won in the running, not the obstacles." — Ash Wilson, 3x Hyrox finisher. The stations are fixed — they take what they take. Pacing the runs is where time is gained or lost.</div>
+    <div class="tw">
+      <table class="tbl">
+        <thead><tr><th>#</th><th>Station</th><th>Standard</th><th>Risk</th><th>Training Response</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td class="w">SkiErg</td><td>1,000m</td><td><span class="tag to">Medium</span></td><td>Not a CF staple — requires deliberate practice. Pace at 70% effort. Blowing arms here costs every station that follows. Zone 2 SkiErg sessions from Phase 2 build the specific endurance.</td></tr>
+          <tr><td>2</td><td class="w">Sled Push</td><td>50m @ 102kg</td><td><span class="tag to">Med-High</span></td><td>Heavy relative to current bodyweight. Quad and hip flexor dominant. Find a gym with a sled before 27 May. Mechanics need practice before race day — the movement pattern is not intuitive under load.</td></tr>
+          <tr><td>3</td><td class="w">Sled Pull</td><td>50m @ 78kg</td><td><span class="tag tb">Low-Med</span></td><td>CF pulling strength transfers. Priority addition: practise walking backwards pulling the sled. Specific knee and IT band mobility work — 3–4 sets light from Phase 2.</td></tr>
+          <tr><td>4</td><td class="w">Burpee Broad Jump</td><td>80 reps</td><td><span class="tag tr">HIGH</span></td><td><strong>Highest-risk station alongside lunges.</strong> The jump pattern differs from standard CF burpees — practice the specific variation. Pacing: 10 reps, breathe, 10 reps. Sprinting the first 20 will leave nothing for reps 50–80.</td></tr>
+          <tr><td>5</td><td class="w">Rowing</td><td>1,000m</td><td><span class="tag tl">Low</span></td><td>CF background and Zone 2 rowing from Phase 2 both transfer. Target ~4:15–4:30/500m split. Should feel controlled at this point in the race.</td></tr>
+          <tr><td>6</td><td class="w">Farmers Carry</td><td>200m @ 2×24kg</td><td><span class="tag tl">Low</span></td><td>Grip and posture. Tall spine throughout. Don't put the weights down — restarting costs more time than slowing down. Treat every CF carry as race practice.</td></tr>
+          <tr><td>7</td><td class="w">Sandbag Lunges</td><td>100m @ 20kg</td><td><span class="tag tr">HIGH</span></td><td><strong>Highest-risk station.</strong> Quad fatigue from the six prior stations compounds here. Weighted lunges in every CF session from Phase 2 — 3×20 at moderate load. 100m at 20kg when fatigued is a completely different experience to fresh lunges in the gym.</td></tr>
+          <tr><td>8</td><td class="w">Wall Balls</td><td>100 reps @ 6kg</td><td><span class="tag tl">Low</span></td><td>100 wall balls is within a CrossFit athlete's comfortable range. The only risk is sprinting the first 30 reps — set a rhythm and hold it. Full squat depth every rep: judges no-rep short squats and it costs more time than doing it correctly.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SUPPLEMENTS ══ -->
+<div id="panel-supplements" class="panel">
+  <div class="sec">
+    <div class="sh"><div class="sn">14</div><div class="st">Supplement Stack</div><div class="sl"></div></div>
+    <div class="co mb18">Hierarchy: calories → protein → sleep → training → then supplements. Tier 1 is non-negotiable at this training load and deficit depth. Tier 2 if budget allows. Tier 3 optional. Don't spend on anything not listed here.</div>
+
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--lime);margin-bottom:9px;">TIER 1 — NON-NEGOTIABLE</div>
+    <div class="supp-grid mb18">
+      <div class="sc"><div class="sn2">Creatine Monohydrate</div><div class="sd">5g/day · Post-workout · No loading phase needed</div><p>Most well-evidenced supplement in sports science. Supports phosphocreatine resynthesis for repeated high-intensity efforts — direct relevance to CrossFit and Hyrox station work. Supports lean mass retention during caloric deficit. Already in use — keep it.</p><div class="sev ev1">Evidence: Extremely Strong</div></div>
+      <div class="sc"><div class="sn2">Whey Protein</div><div class="sd">As needed to hit 210g/day · Post-workout</div><p>A food supplement, not a magic solution. Use it to close the gap to 210g daily. Post-workout timing is optimal — MPS peaks 1–2hrs after training. Hit 210g on rest days too: muscle synthesis happens during recovery, not during the session.</p><div class="sev ev1">Evidence: Extremely Strong</div></div>
+      <div class="sc"><div class="sn2">Vitamin D3 + K2</div><div class="sd">2,000–4,000 IU D3 + 100mcg K2 · Daily with fat-containing meal</div><p>High training load combined with caloric deficit increases demand. D3 supports testosterone production, immune function, and bone density. K2 directs calcium to bone rather than arteries. Take together. Blood test is the most accurate way to determine precise dosing.</p><div class="sev ev1">Evidence: Strong</div></div>
+      <div class="sc"><div class="sn2">Omega-3 (Fish Oil)</div><div class="sd">2–3g EPA+DHA combined/day · With meals</div><p>Anti-inflammatory, supports muscle protein synthesis, improves recovery quality. Elevated systemic inflammation in a caloric deficit with high training load is expected — omega-3s buffer this. Verify the label shows EPA + DHA separately: 2–3g of those specifically, not just 2–3g total fish oil.</p><div class="sev ev1">Evidence: Strong</div></div>
+    </div>
+
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--blue);margin-bottom:9px;">TIER 2 — RECOMMENDED</div>
+    <div class="supp-grid mb18">
+      <div class="sc"><div class="sn2">Caffeine</div><div class="sd">3–5mg/kg · 45–60min pre-training · 1–2 caffeine-free days/week</div><p>At 110kg: ~330–550mg. Start at the lower end. The critical practice: maintain 1–2 caffeine-free days per week so race-day dosing produces a full acute response. Use caffeine-free days on lower-stakes sessions. Avoid on rest days.</p><div class="sev ev1">Evidence: Extremely Strong</div></div>
+      <div class="sc"><div class="sn2">Magnesium Glycinate</div><div class="sd">300–400mg elemental · Before bed</div><p>High training volume plus caloric deficit depletes magnesium. Deficiency directly impairs sleep quality, muscle recovery, and energy metabolism. Glycinate is best absorbed with minimal GI effects — oxide form is largely ineffective. Night-time dosing supports sleep quality, which is a direct performance input.</p><div class="sev ev2">Evidence: Moderate–Strong</div></div>
+      <div class="sc"><div class="sn2">Beta-Alanine</div><div class="sd">3.2–6.4g/day · Split doses · Start now — 4 weeks to load</div><p>Raises muscle carnosine, which buffers lactic acid during sustained high-intensity efforts. Directly relevant to 90 minutes of Hyrox stations. The tingling (paraesthesia) is harmless — split dosing reduces it. <strong>Start immediately</strong> if using: tissue loading takes 4+ weeks. Starting at Week 10 is too late for race day benefit.</p><div class="sev ev2">Evidence: Moderate–Strong</div></div>
+      <div class="sc"><div class="sn2">Electrolytes</div><div class="sd">Sessions over 60min + race day · Sodium focus</div><p>Sodium and potassium replacement matters for performance and recovery in a deficit with high sweat output. Add an electrolyte tab to longer CF sessions and all erg work. Race day: sodium load the night before and morning of. Precision Hydration PH1000 or equivalent.</p><div class="sev ev2">Evidence: Moderate</div></div>
+    </div>
+
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--dim);margin-bottom:9px;">TIER 3 — OPTIONAL</div>
+    <div class="supp-grid">
+      <div class="sc"><div class="sn2">Citrulline Malate</div><div class="sd">6–8g · 45–60min pre-training</div><p>Supports nitric oxide production and ammonia clearance during high-rep training. Consistent moderate evidence for reduced perceived fatigue in longer sessions. A useful addition to the pre-workout stack for longer CF sessions and erg work from Phase 2.</p><div class="sev ev2">Evidence: Moderate</div></div>
+      <div class="sc"><div class="sn2">Collagen + Vitamin C</div><div class="sd">10–15g collagen + 50mg Vit C · 30–60min pre-training</div><p>Emerging evidence for tendon and connective tissue synthesis when timed before loading. At your bodyweight, running and weighted lunges create significant connective tissue load. Low risk. Potentially meaningful for injury prevention as running volume increases through Phase 1 and 2.</p><div class="sev ev3">Evidence: Emerging</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DAILY CHECK-IN ══ -->
+<div id="panel-checkin" class="panel">
+  <div class="sec">
+    <div class="sh"><div class="sn">15</div><div class="st">Daily Check-In</div><div class="sl"></div></div>
+
+    <!-- Setup card - goal weight -->
+    <div class="card mb18" id="cfg-card" style="border-color:rgba(200,241,53,0.2);">
+      <div class="card-title">Goal Configuration</div>
+      <p style="margin-bottom:12px;">Set your race-day target weight. This drives the trajectory line on the weight chart and all progress comparisons. Your starting stats populate automatically from your first check-in.</p>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div class="ci-field" style="margin-bottom:0;"><label>Race Target Weight (kg)</label><input type="number" id="cfg-goal" placeholder="e.g. 100" step="0.1" min="40" max="200"></div>
+        <button class="ci-btn" style="margin-top:18px;" onclick="saveConfig()">Save Goal</button>
+        <span id="cfg-status" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--lime);margin-top:18px;"></span>
+      </div>
+    </div>
+
+    <div class="co mb18">Log every morning before eating. Weight and body fat from your scale or scan. Whoop recovery and resting HR from your morning Whoop. Calories, protein, and carbs from MFP for the previous day. <strong>On Sundays</strong>, four extra measurements appear — neck, waist, hips, and chest in cm. Lean mass is calculated automatically from weight and body fat.</div>
+
+    <div class="g2" style="gap:18px;align-items:start;">
+      <div>
+        <div class="ci-form">
+          <div style="margin-bottom:12px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Select Date</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <button onclick="prevMonth()" style="background:var(--surface);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:16px;padding:2px 10px;cursor:pointer;line-height:1;">‹</button>
+              <span id="cal-month-label" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--white);letter-spacing:0.1em;"></span>
+              <button onclick="nextMonth()" style="background:var(--surface);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:16px;padding:2px 10px;cursor:pointer;line-height:1;">›</button>
+            </div>
+            <div class="wk-hdr-row" style="margin-bottom:3px;">
+              <div class="cal-day-hdr">SUN</div><div class="cal-day-hdr">MON</div><div class="cal-day-hdr">TUE</div><div class="cal-day-hdr">WED</div>
+              <div class="cal-day-hdr">THU</div><div class="cal-day-hdr">FRI</div><div class="cal-day-hdr">SAT</div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+            <div class="ci-date-display" id="ci-date-display">No date selected</div>
+          </div>
+
+          <!-- Daily fields -->
+          <div class="ci-fields">
+            <div class="ci-field"><label>Weight (kg)</label><input type="number" id="ci-weight" placeholder="e.g. 95" step="0.1" min="40" max="250"></div>
+            <div class="ci-field"><label>Body Fat (%)</label><input type="number" id="ci-bf" placeholder="e.g. 25" step="0.1" min="3" max="70"></div>
+            <div class="ci-field"><label>Whoop Recovery (%)</label><input type="number" id="ci-whoop" placeholder="e.g. 72" min="1" max="100"></div>
+            <div class="ci-field"><label>Resting HR (bpm)</label><input type="number" id="ci-rhr" placeholder="e.g. 52" min="30" max="120"></div>
+            <div class="ci-field"><label>Sleep (hrs)</label><input type="number" id="ci-sleep" placeholder="e.g. 7.5" step="0.25" min="2" max="14"></div>
+            <div class="ci-field"><label>VO2 Max</label><input type="number" id="ci-vo2" placeholder="e.g. 42" step="0.1" min="10" max="90"></div>
+            <div class="ci-field"><label>Calories (kcal)</label><input type="number" id="ci-cals" placeholder="e.g. 2350" min="500" max="6000"></div>
+            <div class="ci-field"><label>Protein (g)</label><input type="number" id="ci-protein" placeholder="e.g. 210" min="0" max="500"></div>
+            <div class="ci-field"><label>Carbs (g)</label><input type="number" id="ci-carbs" placeholder="e.g. 215" min="0" max="800"></div>
+          </div>
+
+          <!-- Sunday-only measurements -->
+          <div id="sunday-section" class="hidden" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;">📏 Sunday Measurements (cm)</div>
+            <div class="ci-fields">
+              <div class="ci-field"><label>Neck (cm)</label><input type="number" id="ci-neck" placeholder="41" step="0.5" min="20" max="70"></div>
+              <div class="ci-field"><label>Chest (cm)</label><input type="number" id="ci-chest" placeholder="117.5" step="0.5" min="60" max="180"></div>
+              <div class="ci-field"><label>Waist (cm)</label><input type="number" id="ci-waist" placeholder="110" step="0.5" min="50" max="200"></div>
+              <div class="ci-field"><label>Hips (cm)</label><input type="number" id="ci-hips" placeholder="112" step="0.5" min="60" max="200"></div>
+            </div>
+          </div>
+
+          <button class="ci-btn" style="margin-top:14px;" onclick="saveCheckin()">Save Check-In</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="chart-wrap">
+          <div class="chart-title">Weight vs Target Trajectory</div>
+          <canvas id="wChart"></canvas>
+          <div style="display:flex;gap:14px;margin-top:8px;">
+            <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;"><div style="width:12px;height:2px;background:var(--lime);"></div>Target</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;"><div style="width:12px;height:2px;background:var(--blue);"></div>Actual</div>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-title">Body Fat % Trend</div>
+          <canvas id="bfChart"></canvas>
+        </div>
+        <div class="chart-wrap" id="measurements-chart-wrap" style="display:none;">
+          <div class="chart-title">Weekly Measurements (cm)</div>
+          <canvas id="measChart"></canvas>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+            <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;"><div style="width:10px;height:2px;background:#f43f5e;"></div>Waist</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;"><div style="width:10px;height:2px;background:#60a5fa;"></div>Hips</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;"><div style="width:10px;height:2px;background:#a78bfa;"></div>Chest</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;"><div style="width:10px;height:2px;background:#c8f135;"></div>Neck</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7-day averages -->
+    <div id="avg-section" class="card mt16 hidden">
+      <div class="card-title">7-Day Rolling Averages</div>
+      <div class="g4" id="avg-stats" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- History -->
+    <div style="margin-top:18px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;">Check-In History</div>
+      <div style="overflow-x:auto;">
+        <div class="log-hdr" style="min-width:820px;">
+          <span>Date</span><span>Weight</span><span>Body Fat</span><span>Lean Mass</span><span>Whoop</span><span>RHR</span><span>Cals</span><span>Protein</span><span>Status</span><span></span>
+        </div>
+        <div id="log-entries" style="min-width:820px;"><div class="empty-log">No check-ins yet. Select a date and log your first one above.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RACE DAY ══ -->
+<div id="panel-race" class="panel">
+  <div class="sec">
+    <div class="sh"><div class="sn">16</div><div class="st">Race Day — Thursday 2 July 2026</div><div class="sl"></div></div>
+    <div class="co crit mb18">The race is decided by 13 weeks of training, not the 24 hours before. Race day execution is about protecting what's already been built — pacing conservatively in the early runs so the later stations and runs don't collapse. Start slow, finish strong.</div>
+
+    <div class="g2 mb18">
+      <div class="card">
+        <div class="card-title">Morning Protocol</div>
+        <ul>
+          <li>Wake 2.5–3 hours before wave start</li>
+          <li>Familiar carb-rich breakfast — same food you've eaten before training. Nothing new on race day.</li>
+          <li>200–300mg caffeine 45–60min before start (only if trained with it throughout the block)</li>
+          <li>Sodium pre-load: electrolyte drink with breakfast, not just water</li>
+          <li>2 gels in your pocket for on-course use. Don't rely solely on provided nutrition.</li>
+          <li>No new shoes. No new kit. Nothing untested.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Race Execution</div>
+        <ul>
+          <li><strong class="w">Runs 1–4:</strong> Conversational pace. ~6:30–7:00/km. If you can't finish a sentence, slow down.</li>
+          <li><strong class="w">Every station:</strong> Breathe before starting. Settle into rhythm. Don't sprint the opening reps.</li>
+          <li><strong class="w">Run 4 (halfway):</strong> Take a gel. Keep moving while you eat it.</li>
+          <li><strong class="w">Runs 5–7:</strong> Legs will feel heavy — this is expected and normal. Shorten stride, increase cadence.</li>
+          <li><strong class="w">Sandbag lunges:</strong> Breathe at the turnaround. Keep moving forward — stopping makes restarting harder.</li>
+          <li><strong class="w">Wall balls:</strong> Rhythm over speed. Full squat depth — judges no-rep short squats. The finish line is right there.</li>
+          <li><strong class="w">Run 8:</strong> Give what's left. This is what the 14 weeks were for.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tw">
+      <table class="tbl">
+        <thead><tr><th>Station</th><th>Pacing Cue</th><th>Most Common Mistake</th></tr></thead>
+        <tbody>
+          <tr><td class="w">SkiErg — 1,000m</td><td>70% effort. Steady arm + hip hinge rhythm.</td><td>Going hard to "bank time" — costs every station that follows.</td></tr>
+          <tr><td class="w">Sled Push — 50m</td><td>Drive with legs. Lean forward. Maintain contact.</td><td>Losing foot traction on turns. Grippiest shoes available.</td></tr>
+          <tr><td class="w">Sled Pull — 50m</td><td>Short, controlled pulls. Steady tension throughout.</td><td>Jerky reps — slows the sled and wastes energy vs smooth tension.</td></tr>
+          <tr><td class="w">Burpee BJ — 80 reps</td><td>10 reps, step back, breathe. Hold the rhythm.</td><td>Sprinting reps 1–20. Broken by rep 50 with 30 remaining.</td></tr>
+          <tr><td class="w">Rowing — 1,000m</td><td>Damper 4–6. ~4:15–4:30/500m. Legs first.</td><td>Damper too high, back doing all the work.</td></tr>
+          <tr><td class="w">Farmers Carry — 200m</td><td>Tall posture. Walk fast. Don't put the weights down.</td><td>Putting weights down — restart is harder than slowing down.</td></tr>
+          <tr><td class="w">Sandbag Lunges — 100m</td><td>Breathe at turnaround. Both knees must touch the floor.</td><td>Rushing the first 30m and seizing up by 60m.</td></tr>
+          <tr><td class="w">Wall Balls — 100 reps</td><td>Rhythm over speed. Full squat. Hit the target every rep.</td><td>Short-squatting — judges no-rep it and the restart costs more than doing it right.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- end panels -->
+
+<script>
+// ── NAV ──
+function go(id){
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`[onclick="go('${id}')"]`).classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── STORAGE HELPERS ──
+const KEY='hyrox_checkins_v2';
+const CFG_KEY='hyrox_config_v1';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]');}catch{return [];}}
+function save(d){localStorage.setItem(KEY,JSON.stringify(d));}
+function loadCfg(){try{return JSON.parse(localStorage.getItem(CFG_KEY)||'{}');}catch{return {};}}
+function saveCfg(d){localStorage.setItem(CFG_KEY,JSON.stringify(d));}
+let checkins=load();
+let cfg=loadCfg();
+
+// ── DERIVE START STATS ──
+function getStartEntry(){
+  if(checkins.length===0)return null;
+  return [...checkins].sort((a,b)=>a.date.localeCompare(b.date))[0];
+}
+function getStartWeight(){
+  const e=getStartEntry();
+  return e&&e.weight?e.weight:(cfg.startWeight||null);
+}
+function getStartBF(){
+  const e=getStartEntry();
+  return e&&e.bf?e.bf:(cfg.startBF||null);
+}
+function getGoalWeight(){return cfg.goalWeight||100;}
+
+// ── CALENDAR ──
+const START=new Date(2026,2,27); // 27 March 2026
+const RACE=new Date(2026,6,2);   // 2 July 2026
+let selectedDate=null;
+
+// ── CALENDAR STATE ──
+let calYear=2026, calMonth=2; // start at March 2026 (month index 2)
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function prevMonth(){
+  calMonth--;if(calMonth<0){calMonth=11;calYear--;}
+  buildCalendar();
+}
+function nextMonth(){
+  calMonth++;if(calMonth>11){calMonth=0;calYear++;}
+  buildCalendar();
+}
+
+function buildCalendar(){
+  const grid=document.getElementById('cal-grid');
+  const label=document.getElementById('cal-month-label');
+  if(label) label.textContent=MONTHS[calMonth]+' '+calYear;
+  const first=new Date(calYear,calMonth,1);
+  const lastDay=new Date(calYear,calMonth+1,0).getDate();
+  const startDow=first.getDay();
+  grid.innerHTML='';
+  for(let i=0;i<startDow;i++){const el=document.createElement('div');el.className='cal-day empty';grid.appendChild(el);}
+  for(let d=1;d<=lastDay;d++){
+    const date=new Date(calYear,calMonth,d);
+    const ds=dateStr(date);
+    const el=document.createElement('div');
+    el.className='cal-day';
+    const hasEntry=checkins.some(c=>c.date===ds);
+    el.innerHTML=`<div class="cal-date">${d}</div>${hasEntry?'<div style="width:5px;height:5px;background:var(--lime);border-radius:50%;margin:2px auto 0;"></div>':''}`;
+    if(date<START||date>RACE){el.style.opacity='0.3';el.style.pointerEvents='none';}
+    else{
+      if(ds===selectedDate) el.classList.add('selected');
+      el.onclick=()=>{
+        document.querySelectorAll('.cal-day.selected').forEach(e=>e.classList.remove('selected'));
+        el.classList.add('selected');
+        onDateSelected(ds);
+      };
+    }
+    grid.appendChild(el);
+  }
+}
+
+function dateStr(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function formatDate(d){const m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return d.getDate()+' '+m[d.getMonth()]+' '+d.getFullYear();}
+function parseDateStr(s){const p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+
+// ── SUNDAY CHECK ──
+function isSunday(ds){return parseDateStr(ds).getDay()===0;}
+
+function onDateSelected(ds){
+  selectedDate=ds;
+  const date=parseDateStr(ds);
+  document.getElementById('ci-date-display').textContent='Selected: '+formatDate(date)+(isSunday(ds)?' 📏 Sunday — measurements unlocked':'');
+  const sun=document.getElementById('sunday-section');
+  if(isSunday(ds)){sun.classList.remove('hidden');}else{sun.classList.add('hidden');}
+  const ex=checkins.find(c=>c.date===ds);
+  document.getElementById('ci-weight').value=ex&&ex.weight!=null?ex.weight:'';
+  document.getElementById('ci-bf').value=ex&&ex.bf!=null?ex.bf:'';
+  document.getElementById('ci-whoop').value=ex&&ex.whoop!=null?ex.whoop:'';
+  document.getElementById('ci-rhr').value=ex&&ex.rhr!=null?ex.rhr:'';
+  document.getElementById('ci-sleep').value=ex&&ex.sleep!=null?ex.sleep:'';
+  document.getElementById('ci-vo2').value=ex&&ex.vo2!=null?ex.vo2:'';
+  document.getElementById('ci-cals').value=ex&&ex.cals!=null?ex.cals:'';
+  document.getElementById('ci-protein').value=ex&&ex.protein!=null?ex.protein:'';
+  document.getElementById('ci-carbs').value=ex&&ex.carbs!=null?ex.carbs:'';
+  if(isSunday(ds)){
+    document.getElementById('ci-neck').value=ex&&ex.neck!=null?ex.neck:'';
+    document.getElementById('ci-chest').value=ex&&ex.chest!=null?ex.chest:'';
+    document.getElementById('ci-waist').value=ex&&ex.waist!=null?ex.waist:'';
+    document.getElementById('ci-hips').value=ex&&ex.hips!=null?ex.hips:'';
+  }
+}
+
+// ── SAVE CHECK-IN ──
+function saveCheckin(){
+  if(!selectedDate){alert('Select a date first.');return;}
+  const weight=parseFloat(document.getElementById('ci-weight').value)||null;
+  const bf=parseFloat(document.getElementById('ci-bf').value)||null;
+  const whoop=parseInt(document.getElementById('ci-whoop').value)||null;
+  const vo2=parseFloat(document.getElementById('ci-vo2').value)||null;
+  const rhr=parseInt(document.getElementById('ci-rhr').value)||null;
+  const sleep=parseFloat(document.getElementById('ci-sleep').value)||null;
+  const cals=parseInt(document.getElementById('ci-cals').value)||null;
+  const protein=parseInt(document.getElementById('ci-protein').value)||null;
+  const carbs=parseInt(document.getElementById('ci-carbs').value)||null;
+  if(!weight&&!bf&&!whoop){alert('Enter at least weight, body fat, or recovery.');return;}
+  const entry={date:selectedDate,weight,bf,whoop,rhr,sleep,vo2,cals,protein,carbs};
+  if(isSunday(selectedDate)){
+    entry.neck=parseFloat(document.getElementById('ci-neck').value)||null;
+    entry.chest=parseFloat(document.getElementById('ci-chest').value)||null;
+    entry.waist=parseFloat(document.getElementById('ci-waist').value)||null;
+    entry.hips=parseFloat(document.getElementById('ci-hips').value)||null;
+  }
+  checkins=checkins.filter(c=>c.date!==selectedDate);
+  checkins.push(entry);
+  checkins.sort((a,b)=>a.date.localeCompare(b.date));
+  save(checkins);
+  buildCalendar();
+  render();
+  updateBriefStats();
+}
+
+function deleteCheckin(ds){
+  checkins=checkins.filter(c=>c.date!==ds);
+  save(checkins);
+  buildCalendar();
+  render();
+  updateBriefStats();
+}
+
+// ── TARGETS (interpolation from START to RACE) ──
+function getTarget(ds){
+  const sw=getStartWeight();
+  const gw=getGoalWeight();
+  if(!sw)return null;
+  const d=parseDateStr(ds);
+  const msPerDay=86400000;
+  const daysSinceStart=Math.round((d-START)/msPerDay);
+  const totalDays=Math.round((RACE-START)/msPerDay);
+  if(daysSinceStart<0||daysSinceStart>totalDays)return null;
+  return sw-((sw-gw)*(daysSinceStart/totalDays));
+}
+
+// ── 7-DAY AVERAGE ──
+function sevenDayAvg(field){
+  const sorted=[...checkins].filter(c=>c[field]!=null).sort((a,b)=>b.date.localeCompare(a.date));
+  const last7=sorted.slice(0,7);
+  if(last7.length===0)return null;
+  return last7.reduce((s,c)=>s+c[field],0)/last7.length;
+}
+
+// ── UPDATE BRIEF STATS ──
+function updateBriefStats(){
+  const sw=getStartWeight();
+  const sbf=getStartBF();
+  const gw=getGoalWeight();
+  const avgW=sevenDayAvg('weight');
+  const avgBf=sevenDayAvg('bf');
+  const latestVo2=[...checkins].filter(c=>c.vo2!=null).sort((a,b)=>b.date.localeCompare(a.date))[0];
+
+  // Hero start weight
+  const heroSW=document.getElementById('hero-start-weight');
+  if(heroSW) heroSW.textContent=sw?sw+'kg':'—';
+
+  // Hero weight lost / to goal
+  const currentW=avgW?avgW:(sw||null);
+  const heroLost=document.getElementById('hero-lost');
+  const heroToGoal=document.getElementById('hero-to-goal');
+  const heroStatus=document.getElementById('hero-status');
+
+  if(currentW&&sw){
+    const lost=sw-currentW;
+    const toGoal=currentW-gw;
+    if(heroLost) heroLost.textContent=lost>=0?lost.toFixed(1)+'kg':'—';
+    if(heroToGoal) heroToGoal.textContent=toGoal>0?toGoal.toFixed(1)+'kg to go':'Goal reached 🏁';
+
+    // Motivational status — compare actual rate vs required rate
+    const totalDays=Math.round((RACE-START)/86400000);
+    const daysSinceStart=Math.round((new Date()-START)/86400000);
+    const requiredLoss=sw-gw;
+    const expectedLostByNow=requiredLoss*(daysSinceStart/totalDays);
+    const diff=lost-expectedLostByNow;
+    let statusMsg='';
+    if(checkins.length===0){
+      statusMsg='Log your first check-in to start tracking progress.';
+    } else if(diff>=1.5){
+      statusMsg='Running ahead of target — consider holding deficit rather than cutting further.';
+    } else if(diff>=0.3){
+      statusMsg='Tracking ahead of schedule. Keep the consistency going.';
+    } else if(diff>=-0.5){
+      statusMsg='Right on target. The process is working — stay the course.';
+    } else if(diff>=-1.5){
+      statusMsg='Slightly behind pace. Audit your tracking before changing anything.';
+    } else {
+      statusMsg='Behind target. Check calorie accuracy in MFP before adjusting macros.';
+    }
+    if(heroStatus) heroStatus.textContent=statusMsg;
+    if(heroStatus) heroStatus.style.color=diff>=-0.5?'var(--lime)':diff>=-1.5?'var(--orange)':'var(--red)';
+  } else {
+    if(heroLost) heroLost.textContent='—';
+    if(heroToGoal) heroToGoal.textContent='—';
+    if(heroStatus) heroStatus.textContent='Log your first check-in to begin tracking.';
+  }
+
+  // Brief weight stat
+  const displayW=avgW?avgW:(sw||null);
+  if(displayW&&sw){
+    const delta=displayW-sw;
+    document.getElementById('brief-weight').textContent=displayW.toFixed(1);
+    document.getElementById('brief-weight-sub').textContent='kg · 7-day avg · start: '+sw+'kg';
+    const dc=delta<=0?'color:var(--lime)':'color:var(--red)';
+    document.getElementById('brief-weight-delta').innerHTML=`<span style="${dc}">${delta>0?'+':''}${delta.toFixed(1)}kg from start</span>`;
+  } else if(sw){
+    document.getElementById('brief-weight').textContent=sw.toFixed?sw.toFixed(1):sw;
+    document.getElementById('brief-weight-sub').textContent='kg · starting weight';
+    document.getElementById('brief-weight-delta').textContent='Log more check-ins for trend';
+  }
+
+  // Brief BF stat
+  const displayBf=avgBf?avgBf:(sbf||null);
+  if(displayBf&&sbf){
+    const bfDelta=displayBf-sbf;
+    document.getElementById('brief-bf').textContent=displayBf.toFixed(1)+'%';
+    document.getElementById('brief-bf-sub').textContent='7-day avg · start: '+sbf+'%';
+    const dc=bfDelta<=0?'color:var(--lime)':'color:var(--red)';
+    document.getElementById('brief-bf-delta').innerHTML=`<span style="${dc}">${bfDelta>0?'+':''}${bfDelta.toFixed(1)}% from start</span>`;
+  } else if(sbf){
+    document.getElementById('brief-bf').textContent=sbf+'%';
+    document.getElementById('brief-bf-sub').textContent='starting body fat';
+    document.getElementById('brief-bf-delta').textContent='Log more check-ins for trend';
+  }
+
+  // Lean mass
+  const leanW=displayW||sw, leanBf=displayBf||sbf;
+  if(leanW&&leanBf){
+    const lean=(leanW*(1-leanBf/100));
+    const startLean=sw&&sbf?(sw*(1-sbf/100)):null;
+    document.getElementById('brief-lean').textContent=lean.toFixed(1);
+    if(startLean){
+      const ld=lean-startLean;
+      const dc=ld>=0?'color:var(--lime)':'color:var(--red)';
+      document.getElementById('brief-lean-sub').textContent='kg lean mass';
+      document.getElementById('brief-lean-delta').innerHTML=`<span style="${dc}">${ld>0?'+':''}${ld.toFixed(1)}kg from start</span>`;
+    }
+  }
+
+  // VO2 max
+  if(latestVo2){
+    document.getElementById('brief-vo2').textContent=latestVo2.vo2;
+    if(document.getElementById('brief-vo2').nextElementSibling)
+      document.getElementById('brief-vo2').nextElementSibling.textContent='solid for age & gender';
+  }
+
+  renderTrajectory();
+}
+
+// ── RENDER TRAJECTORY TABLE ──
+function renderTrajectory(){
+  const sw=getStartWeight();
+  const gw=getGoalWeight();
+  const noConf=document.getElementById('traj-no-config');
+  const tableWrap=document.getElementById('traj-table-wrap');
+  const tbody=document.getElementById('traj-tbody');
+  if(!sw||!tableWrap||!tbody){
+    if(noConf) noConf.style.display='block';
+    if(tableWrap) tableWrap.style.display='none';
+    return;
+  }
+  noConf.style.display='none';
+  tableWrap.style.display='block';
+  const totalLoss=sw-gw;
+  const checkpoints=[
+    {label:'Start',date:'27 Mar',pct:0,notes:'—'},
+    {label:'Wk 2 review',date:'13 Apr',pct:0.13,notes:'Under 0.5kg/wk — audit MFP accuracy first'},
+    {label:'Wk 4 deload',date:'27 Apr',pct:0.27,notes:'Deload week — hold deficit, reduce volume'},
+    {label:'CF In-House Comp',date:'Sat 3 May',pct:0.33,notes:'No nutrition adjustment around the comp'},
+    {label:'Wk 8 deload',date:'25 May',pct:0.54,notes:'Audit trend vs target carefully'},
+    {label:'Murph / Phase 1 end',date:'Sat 24 May',pct:0.56,notes:'Phase 2 starts — add station work'},
+    {label:'Wk 10 review',date:'9 Jun',pct:0.65,notes:'Major audit. Phase 2 active.'},
+    {label:'Wk 12 deload',date:'23 Jun',pct:0.83,notes:'Within 1kg of goal → shift to maintenance'},
+    {label:'Race Day',date:'Thu 2 Jul',pct:1.0,notes:'Done.',race:true},
+  ];
+  tbody.innerHTML=checkpoints.map(c=>{
+    const tgt=c.pct===0?sw:(sw-(totalLoss*c.pct));
+    const lostByThen=(totalLoss*c.pct);
+    const style=c.race?'color:var(--red);':'';
+    const tgtStyle=c.race?'color:var(--lime);font-weight:700;':'';
+    return `<tr>
+      <td class="w" style="${style}">${c.label}</td>
+      <td style="${style}">${c.date}</td>
+      <td style="${tgtStyle}">${c.pct===0?sw.toFixed(1)+'kg':'~'+tgt.toFixed(1)+'kg'}</td>
+      <td style="${tgtStyle}">${c.pct===0?'—':'~'+lostByThen.toFixed(1)+'kg'}</td>
+      <td>${c.notes}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── RENDER LOG ──
+function render(){
+  const avgW=sevenDayAvg('weight');
+  const avgBf=sevenDayAvg('bf');
+  const avgWhoop=sevenDayAvg('whoop');
+  const avgCals=sevenDayAvg('cals');
+  const avgRhr=sevenDayAvg('rhr');
+  const avgSleep=sevenDayAvg('sleep');
+  const avgSec=document.getElementById('avg-section');
+  if(checkins.length>=3){
+    avgSec.classList.remove('hidden');
+    const leanMass=avgW&&avgBf?((avgW*(1-avgBf/100)).toFixed(1)+'kg'):'—';
+    const rhrColor=avgRhr?avgRhr<50?'var(--lime)':avgRhr<60?'var(--text)':'var(--orange)':'var(--dim)';
+    const sleepColor=avgSleep?avgSleep>=7.5?'var(--lime)':avgSleep>=6.5?'var(--orange)':'var(--red)':'var(--dim)';
+    document.getElementById('avg-stats').innerHTML=`
+      <div class="stat"><div class="stat-lbl">Avg Weight</div><div class="stat-val" style="font-size:26px;">${avgW?avgW.toFixed(1):'-'}</div><div class="stat-sub">kg · 7-day avg</div></div>
+      <div class="stat"><div class="stat-lbl">Body Fat</div><div class="stat-val blue" style="font-size:26px;">${avgBf?avgBf.toFixed(1)+'%':'—'}</div><div class="stat-sub">7-day avg</div></div>
+      <div class="stat"><div class="stat-lbl">Lean Mass</div><div class="stat-val" style="font-size:26px;color:var(--purple);">${leanMass}</div><div class="stat-sub">calculated</div></div>
+      <div class="stat"><div class="stat-lbl">Avg Recovery</div><div class="stat-val" style="font-size:26px;color:${avgWhoop>66?'var(--lime)':avgWhoop>33?'var(--orange)':'var(--red)'};">${avgWhoop?Math.round(avgWhoop)+'%':'—'}</div><div class="stat-sub">7-day avg</div></div>
+      <div class="stat"><div class="stat-lbl">Resting HR</div><div class="stat-val" style="font-size:26px;color:${rhrColor};">${avgRhr?Math.round(avgRhr)+'bpm':'—'}</div><div class="stat-sub">7-day avg</div></div>
+      <div class="stat"><div class="stat-lbl">Avg Sleep</div><div class="stat-val" style="font-size:26px;color:${sleepColor};">${avgSleep?avgSleep.toFixed(1)+'h':'—'}</div><div class="stat-sub">target: 7.5h+</div></div>
+      <div class="stat"><div class="stat-lbl">Avg Calories</div><div class="stat-val" style="font-size:26px;color:${avgCals&&Math.abs(avgCals-2350)<150?'var(--lime)':avgCals&&avgCals>2350?'var(--orange)':'var(--text)'};">${avgCals?Math.round(avgCals):'—'}</div><div class="stat-sub">kcal · target 2,350</div></div>`;
+  }else{avgSec.classList.add('hidden');}
+
+  const container=document.getElementById('log-entries');
+  if(checkins.length===0){container.innerHTML='<div class="empty-log">No check-ins yet. Select a date and log your first one above.</div>';drawCharts();return;}
+  const sorted=[...checkins].sort((a,b)=>b.date.localeCompare(a.date));
+  container.innerHTML=sorted.map(c=>{
+    const target=getTarget(c.date);
+    const delta=c.weight&&target?(c.weight-target):null;
+    const deltaStr=delta!=null?(delta>0?'+':'')+delta.toFixed(1)+'kg':'—';
+    const deltaCls=delta!=null&&delta<=0?'neg':'pos';
+    const isDeload=[4,8,12].includes(weekNum(c.date));
+    let st,stcls;
+    if(isDeload){st='Deload';stcls='sdl';}
+    else if(delta==null){st='—';stcls='';}
+    else if(delta<=0.5){st='On Track';stcls='son';}
+    else if(delta<=1.5){st='Watch';stcls='sdl';}
+    else{st='Behind';stcls='sbeh';}
+    const wc=c.whoop?c.whoop>66?'var(--lime)':c.whoop>33?'var(--orange)':'var(--red)':'var(--dim)';
+    const lm=c.weight&&c.bf?(c.weight*(1-c.bf/100)).toFixed(1)+'kg':'—';
+    const isSun=isSunday(c.date);
+    const measStr=isSun&&c.waist?`W:${c.waist} H:${c.hips}`:'';
+    return `<div class="log-row">
+      <span class="mono" style="font-size:10px;">${formatDate(parseDateStr(c.date))}${isSun?'<span style="color:var(--orange);margin-left:3px;">●</span>':''}</span>
+      <span class="w">${c.weight?c.weight+'kg':'—'}</span>
+      <span class="w">${c.bf?c.bf+'%':'—'}</span>
+      <span style="color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:11px;">${lm}</span>
+      <span style="color:${wc};font-family:'JetBrains Mono',monospace;font-size:11px;">${c.whoop?c.whoop+'%':'—'}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;">${c.rhr?c.rhr+'bpm':'—'}</span>
+      <span>${c.cals?c.cals:'—'}</span>
+      <span>${c.protein?c.protein+'g':'—'}</span>
+      <span class="ls ${stcls}">${st}</span>
+      <button class="del-btn" onclick="deleteCheckin('${c.date}')">✕</button>
+    </div>`;
+  }).join('');
+  drawCharts();
+}
+
+function weekNum(ds){
+  const d=parseDateStr(ds);
+  const diff=Math.round((d-START)/86400000);
+  return Math.floor(diff/7)+1;
+}
+
+// ── CHARTS ──
+function drawChart(canvasId,data,targets,color,label,suffix,fixedH){
+  const canvas=document.getElementById(canvasId);
+  if(!canvas)return;
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.offsetWidth||600;
+  const H=fixedH||140;
+  // Always set both CSS height and canvas dimensions from fixed values — never read canvas.height
+  canvas.style.height=H+'px';
+  canvas.width=Math.round(W*dpr);
+  canvas.height=Math.round(H*dpr);
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,W,H);
+  const pad={l:42,r:14,t:8,b:24};
+  const gw=W-pad.l-pad.r,gh=H-pad.t-pad.b;
+  const allV=[...data.map(d=>d.v),...(targets||[]).map(t=>t.v)].filter(v=>v!=null);
+  if(allV.length===0)return;
+  const minV=Math.min(...allV)-1,maxV=Math.max(...allV)+1;
+  const totalDays=Math.round((RACE-START)/86400000);
+  function xp(ds){const d=parseDateStr(ds);const diff=Math.round((d-START)/86400000);return pad.l+(diff/totalDays)*gw;}
+  function yp(v){return pad.t+gh-((v-minV)/(maxV-minV))*gh;}
+  // Grid
+  const range=maxV-minV;
+  const step=range>10?5:range>5?2:1;
+  const gridStart=Math.ceil(minV/step)*step;
+  ctx.strokeStyle='rgba(37,43,51,0.7)';ctx.lineWidth=1;
+  for(let v=gridStart;v<=maxV;v+=step){
+    const y=yp(v);
+    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
+    ctx.fillStyle='rgba(107,117,133,0.8)';ctx.font=`9px 'JetBrains Mono'`;
+    ctx.textAlign='right';ctx.fillText(v+suffix,pad.l-3,y+3);
+  }
+  // Target line
+  if(targets&&targets.length>0){
+    ctx.strokeStyle='rgba(200,241,53,0.35)';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+    ctx.beginPath();
+    targets.forEach((t,i)=>{i===0?ctx.moveTo(xp(t.ds),yp(t.v)):ctx.lineTo(xp(t.ds),yp(t.v));});
+    ctx.stroke();ctx.setLineDash([]);
+  }
+  // Actual line
+  if(data.length>0){
+    ctx.strokeStyle=color+'cc';ctx.lineWidth=2;
+    ctx.beginPath();
+    data.filter(d=>d.v!=null).forEach((d,i)=>{i===0?ctx.moveTo(xp(d.ds),yp(d.v)):ctx.lineTo(xp(d.ds),yp(d.v));});
+    ctx.stroke();
+    data.filter(d=>d.v!=null).forEach(d=>{
+      ctx.fillStyle=color;ctx.beginPath();ctx.arc(xp(d.ds),yp(d.v),3.5,0,Math.PI*2);ctx.fill();
+    });
+  }
+  // X-axis labels (months)
+  ctx.fillStyle='rgba(107,117,133,0.7)';ctx.font=`8px 'JetBrains Mono'`;ctx.textAlign='center';
+  const months=[{m:2,label:'Mar'},{m:3,label:'Apr'},{m:4,label:'May'},{m:5,label:'Jun'},{m:6,label:'Jul'}];
+  months.forEach(({m,label})=>{
+    const d=new Date(2026,m,1);
+    if(d>=START&&d<=RACE){const x=xp(dateStr(d));ctx.fillText(label,x,H-7);}
+  });
+}
+
+function drawCharts(){
+  // Weight chart
+  const wData=checkins.filter(c=>c.weight!=null).map(c=>({ds:c.date,v:c.weight}));
+  const sw=getStartWeight();
+  const gw=getGoalWeight();
+  const tPoints=[];
+  if(sw){
+    tPoints.push({ds:dateStr(START),v:sw});
+    for(let m=2;m<=6;m++){
+      const d=new Date(2026,m,1);
+      if(d>START&&d<=RACE){const ds=dateStr(d);const t=getTarget(ds);if(t)tPoints.push({ds,v:+t.toFixed(1)});}
+    }
+    tPoints.push({ds:dateStr(RACE),v:gw});
+  }
+  drawChart('wChart',wData,sw?tPoints:[],'#60a5fa','Weight','kg',140);
+
+  // BF chart
+  const bfData=checkins.filter(c=>c.bf!=null).map(c=>({ds:c.date,v:c.bf}));
+  drawChart('bfChart',bfData,null,'#a78bfa','Body Fat','%',100);
+
+  // Measurements chart (Sundays only)
+  const measCheckins=checkins.filter(c=>c.waist||c.hips||c.chest||c.neck);
+  const wrap=document.getElementById('measurements-chart-wrap');
+  if(measCheckins.length>=1){
+    wrap.style.display='block';
+    drawMultiLineChart('measChart',[
+      {data:measCheckins.filter(c=>c.waist).map(c=>({ds:c.date,v:c.waist})),color:'#f43f5e'},
+      {data:measCheckins.filter(c=>c.hips).map(c=>({ds:c.date,v:c.hips})),color:'#60a5fa'},
+      {data:measCheckins.filter(c=>c.chest).map(c=>({ds:c.date,v:c.chest})),color:'#a78bfa'},
+      {data:measCheckins.filter(c=>c.neck).map(c=>({ds:c.date,v:c.neck})),color:'#c8f135'},
+    ],120);
+  }else{wrap.style.display='none';}
+}
+
+function drawMultiLineChart(canvasId,series,fixedH){
+  const canvas=document.getElementById(canvasId);
+  if(!canvas)return;
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.offsetWidth||600;
+  const H=fixedH||120;
+  canvas.style.height=H+'px';
+  canvas.width=Math.round(W*dpr);
+  canvas.height=Math.round(H*dpr);
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,W,H);
+  const pad={l:42,r:14,t:8,b:24};
+  const gw=W-pad.l-pad.r,gh=H-pad.t-pad.b;
+  const allV=series.flatMap(s=>s.data.map(d=>d.v)).filter(v=>v!=null);
+  if(allV.length===0)return;
+  const minV=Math.min(...allV)-2,maxV=Math.max(...allV)+2;
+  const totalDays=Math.round((RACE-START)/86400000);
+  function xp(ds){const d=parseDateStr(ds);const diff=Math.round((d-START)/86400000);return pad.l+(diff/totalDays)*gw;}
+  function yp(v){return pad.t+gh-((v-minV)/(maxV-minV))*gh;}
+  // Grid
+  const range=maxV-minV;
+  const step=range>30?10:range>15?5:2;
+  const gridStart=Math.ceil(minV/step)*step;
+  ctx.strokeStyle='rgba(37,43,51,0.7)';ctx.lineWidth=1;
+  for(let v=gridStart;v<=maxV;v+=step){
+    const y=yp(v);
+    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
+    ctx.fillStyle='rgba(107,117,133,0.8)';ctx.font=`9px 'JetBrains Mono'`;
+    ctx.textAlign='right';ctx.fillText(v+'cm',pad.l-3,y+3);
+  }
+  // Series lines
+  series.forEach(s=>{
+    if(s.data.length===0)return;
+    ctx.strokeStyle=s.color+'cc';ctx.lineWidth=2;ctx.setLineDash([]);
+    ctx.beginPath();
+    s.data.forEach((d,i)=>{i===0?ctx.moveTo(xp(d.ds),yp(d.v)):ctx.lineTo(xp(d.ds),yp(d.v));});
+    ctx.stroke();
+    s.data.forEach(d=>{
+      ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(xp(d.ds),yp(d.v),3,0,Math.PI*2);ctx.fill();
+    });
+  });
+  // X labels
+  ctx.fillStyle='rgba(107,117,133,0.7)';ctx.font=`8px 'JetBrains Mono'`;ctx.textAlign='center';
+  const months=[{m:2,label:'Mar'},{m:3,label:'Apr'},{m:4,label:'May'},{m:5,label:'Jun'},{m:6,label:'Jul'}];
+  months.forEach(({m,label})=>{
+    const d=new Date(2026,m,1);
+    if(d>=START&&d<=RACE){ctx.fillText(label,xp(dateStr(d)),H-7);}
+  });
+}
+
+// ── CONFIG ──
+function saveConfig(){
+  const gw=parseFloat(document.getElementById('cfg-goal').value);
+  if(!gw||gw<40||gw>250){alert('Enter a valid goal weight.');return;}
+  cfg.goalWeight=gw;
+  saveCfg(cfg);
+  document.getElementById('cfg-status').textContent='Saved ✓';
+  // Hide card after short delay
+  setTimeout(()=>{
+    const card=document.getElementById('cfg-card');
+    if(card) card.style.display='none';
+  },800);
+  render();
+  updateBriefStats();
+  drawCharts();
+  renderTrajectory();
+}
+function initConfig(){
+  if(cfg.goalWeight){
+    document.getElementById('cfg-goal').value=cfg.goalWeight;
+    const card=document.getElementById('cfg-card');
+    if(card) card.style.display='none';
+  }
+}
+function s2ms(s){const m=Math.floor(s/60);const sec=Math.round(s%60);return m+':'+(sec<10?'0':'')+sec;}
+function calcRun(){
+  const d1=+document.getElementById('run1').value,d6=+document.getElementById('run6').value;
+  if(!d1||!d6){alert('Enter both distances.');return;}
+  const sp6=d6/360;
+  const z2=sp6*0.62,lt=sp6*0.78,vo2=sp6;
+  document.getElementById('r-z2').textContent=s2ms(1000/z2)+'/km';
+  document.getElementById('r-z2b').textContent=(z2*3.6).toFixed(1)+' kph';
+  document.getElementById('r-lt').textContent=s2ms(1000/lt)+'/km';
+  document.getElementById('r-ltb').textContent=(lt*3.6).toFixed(1)+' kph';
+  document.getElementById('r-vo2').textContent=s2ms(1000/vo2)+'/km';
+  document.getElementById('r-vo2b').textContent=(vo2*3.6).toFixed(1)+' kph';
+  const ff=(Math.log(60/360)/Math.log(d1/d6)-1)*100;
+  const pri=ff<21?'Speed':ff>22?'Endurance':'Balanced';
+  document.getElementById('r-ff').innerHTML=`<div class="co" style="margin:0;font-size:12px;"><strong>Fatigue Factor: ${ff.toFixed(1)}%</strong> (optimal 21–22%) — Training priority: <strong>${pri}</strong></div>`;
+  document.getElementById('run-res').classList.remove('hidden');
+}
+function calcRow(){
+  const d1=+document.getElementById('row1').value,d6=+document.getElementById('row6').value;
+  if(!d1||!d6){alert('Enter both distances.');return;}
+  const sp6=d6/360;
+  const z2Split=500/(sp6*0.65),ltSplit=500/(sp6*0.82),vo2Split=500/sp6;
+  const wt=s=>Math.round(2.8/Math.pow(s/500,3));
+  document.getElementById('rw-z2').textContent=s2ms(z2Split)+'/500m';
+  document.getElementById('rw-z2b').textContent=wt(z2Split)+' watts';
+  document.getElementById('rw-lt').textContent=s2ms(ltSplit)+'/500m';
+  document.getElementById('rw-ltb').textContent=wt(ltSplit)+' watts';
+  document.getElementById('rw-vo2').textContent=s2ms(vo2Split)+'/500m';
+  document.getElementById('rw-vo2b').textContent=wt(vo2Split)+' watts';
+  const ff=(Math.log(60/360)/Math.log(d1/d6)-1)*100;
+  document.getElementById('rw-ff').textContent=`Fatigue Factor: ${ff.toFixed(1)}% (optimal 9–10%) — Priority: ${ff<9?'Speed':ff>10?'Endurance':'Balanced'}`;
+  document.getElementById('row-res').classList.remove('hidden');
+}
+function calcSki(){
+  const d1=+document.getElementById('ski1').value,d6=+document.getElementById('ski6').value;
+  if(!d1||!d6){alert('Enter both distances.');return;}
+  const sp6=d6/360;
+  const z2Split=500/(sp6*0.65),ltSplit=500/(sp6*0.82),vo2Split=500/sp6;
+  const wt=s=>Math.round(2.8/Math.pow(s/500,3));
+  document.getElementById('sk-z2').textContent=s2ms(z2Split)+'/500m';
+  document.getElementById('sk-z2b').textContent=wt(z2Split)+' watts';
+  document.getElementById('sk-lt').textContent=s2ms(ltSplit)+'/500m';
+  document.getElementById('sk-ltb').textContent=wt(ltSplit)+' watts';
+  document.getElementById('sk-vo2').textContent=s2ms(vo2Split)+'/500m';
+  document.getElementById('sk-vo2b').textContent=wt(vo2Split)+' watts';
+  const ff=(Math.log(60/360)/Math.log(d1/d6)-1)*100;
+  document.getElementById('sk-ff').textContent=`Fatigue Factor: ${ff.toFixed(1)}% (optimal 7.5–8.5%) — Priority: ${ff<7.9?'Speed':ff>8.1?'Endurance':'Balanced'}`;
+  document.getElementById('ski-res').classList.remove('hidden');
+}
+
+// ── INIT ──
+buildCalendar();
+initConfig();
+render();
+updateBriefStats();
+window.addEventListener('resize',()=>{drawCharts();});
+</script>
+</body>
+</html>
